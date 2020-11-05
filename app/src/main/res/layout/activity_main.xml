@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        >
+
+        <Button
+            android:id="@+id/main_activity_rotate_picture_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rotate picture"
+            />
+
+        <Button
+            android:id="@+id/main_activity_gyro_rotate_picture_button"
+            android:layout_width="wrap_content"
+            android:layout_height="62dp"
+            android:text="Rotate pic with gyro"
+            />
+
+        <Button
+            android:id="@+id/main_activity_rotate_text_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rotate text"
+            />
+
+        <Button
+            android:id="@+id/main_activity_draw_on_screen_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Draw on screen"
+            />
+
+        <Button
+            android:id="@+id/main_activity_image_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Image button"
+            />
+
+        <Button
+            android:id="@+id/main_activity_card_view_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Card view"
+            />
+
+        <Button
+            android:id="@+id/main_activity_some_button_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ProgressBar"
+            />
+
+        <Button
+            android:id="@+id/main_activity_view_pager"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="View Pager"
+
+            />
+
+        <Button
+            android:id="@+id/main_activity_view_pager_test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New View Pager with images"
+            />
+
+        <Button
+            android:id="@+id/notification_test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Notification test"
+            />
+    </LinearLayout>
+
+</ScrollView>
