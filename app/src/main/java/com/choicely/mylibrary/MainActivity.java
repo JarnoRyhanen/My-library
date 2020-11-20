@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private Button viewPagerBtn;
     private Button viewPagerTestBtn;
     private Button notificationBtn;
+    private Button countDownTimerBtn;
 
 
     @Override
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         viewPagerTestBtn = findViewById(R.id.main_activity_view_pager_test);
 
         notificationBtn = findViewById(R.id.notification_test);
+        countDownTimerBtn = findViewById(R.id.count_down_timer);
 
         rotatePicBtn.setOnClickListener(v -> {
             Intent intent = new Intent(this, SecondaryActivity.class);
@@ -79,6 +81,10 @@ public class MainActivity extends AppCompatActivity {
         });
         notificationBtn.setOnClickListener(v -> {
             Intent intent = new Intent(this, NotificationTestActivity.class);
+            startActivity(intent);
+        });
+        countDownTimerBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(this, CountDownTimerActivity.class);
             startActivity(intent);
         });
     }

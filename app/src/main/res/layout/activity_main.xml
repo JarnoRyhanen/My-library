@@ -86,6 +86,13 @@
             android:layout_height="wrap_content"
             android:text="Notification test"
             />
+
+        <Button
+            android:id="@+id/count_down_timer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Count Down TImer"
+            />
     </LinearLayout>
 
 </ScrollView>
