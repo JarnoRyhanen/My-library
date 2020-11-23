@@ -59,15 +59,14 @@ public class CountDownTimerActivity extends AppCompatActivity {
         textViewHours.setText(String.format("%02d", hours));
     }
 
-    CountDownTimer timer= null;
+    CountDownTimer timer = null;
+
     protected void setTimer() {
 
         Log.d(TAG, "setTimer: time in milliseconds: " + timeInMillis);
         Log.d(TAG, "setTimer: hours " + timeData.getHours());
         Log.d(TAG, "setTimer: minutes " + timeData.getMinutes());
         Log.d(TAG, "setTimer: seconds " + timeData.getSeconds());
-
-
 
 
         timer = new CountDownTimer(timeInMillis, 1000) {
@@ -83,16 +82,16 @@ public class CountDownTimerActivity extends AppCompatActivity {
                 timeData.setSeconds(seconds);
 
                 if (hours == 0 && minutes == 0 && seconds < 59 && seconds < 0) {
-                        minutes -= 1;
-                        seconds = 59;
+                    minutes -= 1;
+                    seconds = 59;
                 }
-                if (hours == 0 && minutes < 59 && seconds < 59 && seconds < 0) {
-                        minutes -= 1;
-                        seconds = 59;
-                        timeData.setMinutes(minutes);
-                        timeData.setSeconds(seconds);
+                if (hours == 0 && minutes <= 59 && seconds < 59 && seconds < 0) {
+                    minutes -= 1;
+                    seconds = 59;
+                    timeData.setMinutes(minutes);
+                    timeData.setSeconds(seconds);
                 }
-                if (hours < 23 && minutes < 59 && seconds < 59) {
+                if (hours <= 23 && minutes <= 59 && seconds <= 59) {
                     if (seconds < 0) {
                         seconds = 59;
                         minutes -= 1;
@@ -184,7 +183,7 @@ public class CountDownTimerActivity extends AppCompatActivity {
                 enableButtons();
                 setTimesToZero();
                 setTimeRemaining(timeData.getHours(), timeData.getMinutes(), timeData.getSeconds());
-             timer.cancel();
+                timer.cancel();
                 break;
         }
     }
