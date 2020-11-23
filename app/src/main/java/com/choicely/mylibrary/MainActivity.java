@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private Button viewPagerTestBtn;
     private Button notificationBtn;
     private Button countDownTimerBtn;
+    private Button citySearchBtn;
 
 
     @Override
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
         notificationBtn = findViewById(R.id.notification_test);
         countDownTimerBtn = findViewById(R.id.count_down_timer);
+        citySearchBtn = findViewById(R.id.city_search_button);
 
         rotatePicBtn.setOnClickListener(v -> {
             Intent intent = new Intent(this, SecondaryActivity.class);
@@ -85,6 +87,10 @@ public class MainActivity extends AppCompatActivity {
         });
         countDownTimerBtn.setOnClickListener(v -> {
             Intent intent = new Intent(this, CountDownTimerActivity.class);
+            startActivity(intent);
+        });
+        citySearchBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(this, CitySearchActivity.class);
             startActivity(intent);
         });
     }

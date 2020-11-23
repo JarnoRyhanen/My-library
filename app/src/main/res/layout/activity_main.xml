@@ -93,6 +93,13 @@
             android:layout_height="wrap_content"
             android:text="Count Down TImer"
             />
+
+        <Button
+            android:id="@+id/city_search_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="City search"
+            />
     </LinearLayout>
 
 </ScrollView>
