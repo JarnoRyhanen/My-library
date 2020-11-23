@@ -6,8 +6,8 @@
     android:orientation="vertical"
     >
 
-    <EditText
-        android:id="@+id/city_search_activity_edit_text"
+    <AutoCompleteTextView
+        android:id="@+id/city_search_activity_auto_complete_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
