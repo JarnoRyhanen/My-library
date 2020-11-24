@@ -20,13 +20,13 @@
         android:textSize="30dp"
         />
 
-<!--    <ProgressBar-->
-<!--        android:id="@+id/city_search_activity_spinner"-->
-<!--        style="?android:attr/progressBarStyleLarge"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_below="@+id/city_search_activity_auto_complete_text_view"-->
-<!--        android:layout_centerInParent="true"-->
-<!--        />-->
+    <ProgressBar
+        android:id="@+id/city_search_activity_spinner"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/city_search_activity_auto_complete_text_view"
+        android:layout_centerInParent="true"
+        />
 
 </RelativeLayout>

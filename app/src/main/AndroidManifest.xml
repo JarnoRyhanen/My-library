@@ -42,7 +42,10 @@
         <activity android:name=".viewpagers.ViewPagerTest2" />
         <activity android:name=".NotificationTestActivity" />
         <activity android:name=".countcowntimer.CountDownTimerActivity" />
-        <activity android:name=".citySearch.CitySearchActivity" />
+        <activity
+            android:name=".citySearch.CitySearchActivity"
+            android:windowSoftInputMode="adjustResize"
+            />
         <activity android:name=".stringGenerator.StringGeneratorActivity" />
 
 

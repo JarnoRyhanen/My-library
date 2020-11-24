@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.ProgressBar;
@@ -38,13 +39,16 @@ public class CitySearchActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     ArrayList<String> cities = new ArrayList<String>();
 
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.city_search_activity);
 
         autoCompleteTextView = findViewById(R.id.city_search_activity_auto_complete_text_view);
-//        progressBar = findViewById(R.id.city_search_activity_spinner);
+        progressBar = findViewById(R.id.city_search_activity_spinner);
+
+        progressBar.setVisibility(View.GONE);
 
         autoCompleteTextView.addTextChangedListener(new TextWatcher() {
             @Override
@@ -97,6 +101,9 @@ public class CitySearchActivity extends AppCompatActivity {
                         JSONObject jsonObject = new JSONObject(myResponse);
                         JSONArray dataArray = jsonObject.getJSONArray("data");
 
+                        progressBar.post(() -> {
+                            progressBar.setVisibility(View.VISIBLE);
+                        });
                         cities.clear();
                         for (int i = 0; i < dataArray.length(); i++) {
 
@@ -104,8 +111,6 @@ public class CitySearchActivity extends AppCompatActivity {
                             String country = obj.getString("country_code_3");
                             String city = obj.getString("full_name");
                             String countryAndCity = country + ", " + city;
-//                            cities.add(obj.getString("country_code_3"));
-//                            cities.add(obj.getString("full_name"));
                             cities.add(countryAndCity);
                             Log.d(TAG, "onResponse: city: " + (obj.getString("full_name")));
                         }
@@ -114,13 +119,15 @@ public class CitySearchActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }
+                progressBar.post(() -> {
+                    progressBar.setVisibility(View.GONE);
+                });
             }
         });
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>
-                (this, R.layout.auto_complete_item,R.id.auto_complete_item_text_view, cities);
+                (this, R.layout.auto_complete_item, R.id.auto_complete_item_text_view, cities);
 
-//        autoCompleteTextView.setThreshold(3); //will start working from first character
         autoCompleteTextView.setAdapter(adapter);
     }
 }
