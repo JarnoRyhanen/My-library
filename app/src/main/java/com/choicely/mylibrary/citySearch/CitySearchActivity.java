@@ -94,8 +94,6 @@ public class CitySearchActivity extends AppCompatActivity {
                     Log.d(TAG, "onResponse: this is the json" + myResponse);
 
                     try {
-                        Log.d(TAG, "onResponse: " + "toimii ############################################3");
-
                         JSONObject jsonObject = new JSONObject(myResponse);
                         JSONArray dataArray = jsonObject.getJSONArray("data");
 
