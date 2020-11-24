@@ -100,6 +100,12 @@
             android:layout_height="wrap_content"
             android:text="City search"
             />
+        <Button
+            android:id="@+id/generate_strings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="String generator"
+            />
     </LinearLayout>
 
 </ScrollView>

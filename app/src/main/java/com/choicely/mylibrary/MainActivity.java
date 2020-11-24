@@ -1,11 +1,14 @@
 package com.choicely.mylibrary;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.choicely.mylibrary.citySearch.CitySearchActivity;
+import com.choicely.mylibrary.countcowntimer.CountDownTimerActivity;
+import com.choicely.mylibrary.stringGenerator.StringGeneratorActivity;
 import com.choicely.mylibrary.viewpagers.ViewPagerTest2;
 
 public class MainActivity extends AppCompatActivity {
@@ -22,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private Button notificationBtn;
     private Button countDownTimerBtn;
     private Button citySearchBtn;
+    private Button generateStrings;
 
 
     @Override
@@ -43,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
         notificationBtn = findViewById(R.id.notification_test);
         countDownTimerBtn = findViewById(R.id.count_down_timer);
         citySearchBtn = findViewById(R.id.city_search_button);
+        generateStrings = findViewById(R.id.generate_strings);
+
 
         rotatePicBtn.setOnClickListener(v -> {
             Intent intent = new Intent(this, SecondaryActivity.class);
@@ -91,6 +97,10 @@ public class MainActivity extends AppCompatActivity {
         });
         citySearchBtn.setOnClickListener(v -> {
             Intent intent = new Intent(this, CitySearchActivity.class);
+            startActivity(intent);
+        });
+        generateStrings.setOnClickListener(v -> {
+            Intent intent = new Intent(this, StringGeneratorActivity.class);
             startActivity(intent);
         });
     }

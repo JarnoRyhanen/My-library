@@ -1,4 +1,4 @@
-package com.choicely.mylibrary;
+package com.choicely.mylibrary.citySearch;
 
 import android.os.Bundle;
 import android.text.Editable;
@@ -10,6 +10,8 @@ import android.widget.ProgressBar;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.choicely.mylibrary.R;
 
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;

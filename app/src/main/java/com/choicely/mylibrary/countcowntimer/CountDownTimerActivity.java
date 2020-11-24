@@ -1,4 +1,4 @@
-package com.choicely.mylibrary;
+package com.choicely.mylibrary.countcowntimer;
 
 import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
@@ -15,7 +15,7 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.concurrent.CountDownLatch;
+import com.choicely.mylibrary.R;
 
 public class CountDownTimerActivity extends AppCompatActivity {
     private static final String TAG = "CountDownTimerActivity";

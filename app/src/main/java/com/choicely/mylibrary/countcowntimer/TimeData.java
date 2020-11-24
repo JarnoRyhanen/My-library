@@ -1,4 +1,4 @@
-package com.choicely.mylibrary;
+package com.choicely.mylibrary.countcowntimer;
 
 public class TimeData {
 

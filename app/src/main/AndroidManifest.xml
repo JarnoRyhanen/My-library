@@ -41,8 +41,10 @@
         <activity android:name=".ViewPagerActivity" />
         <activity android:name=".viewpagers.ViewPagerTest2" />
         <activity android:name=".NotificationTestActivity" />
-        <activity android:name=".CountDownTimerActivity" />
-        <activity android:name=".CitySearchActivity" />
+        <activity android:name=".countcowntimer.CountDownTimerActivity" />
+        <activity android:name=".citySearch.CitySearchActivity" />
+        <activity android:name=".stringGenerator.StringGeneratorActivity" />
+
 
     </application>
 
