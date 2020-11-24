@@ -42,7 +42,7 @@ public class CitySearchActivity extends AppCompatActivity {
         setContentView(R.layout.city_search_activity);
 
         autoCompleteTextView = findViewById(R.id.city_search_activity_auto_complete_text_view);
-        progressBar = findViewById(R.id.city_search_activity_spinner);
+//        progressBar = findViewById(R.id.city_search_activity_spinner);
 
         autoCompleteTextView.addTextChangedListener(new TextWatcher() {
             @Override
@@ -72,7 +72,6 @@ public class CitySearchActivity extends AppCompatActivity {
                 .addPathSegment("search")
                 .addPathSegment("cities")
                 .addPathSegment(String.valueOf(textViewInput))
-                .addQueryParameter("limit", "10")
                 .build();
         Log.d(TAG, "onCreate: " + url);
 
@@ -98,10 +97,16 @@ public class CitySearchActivity extends AppCompatActivity {
                         JSONObject jsonObject = new JSONObject(myResponse);
                         JSONArray dataArray = jsonObject.getJSONArray("data");
 
+                        cities.clear();
                         for (int i = 0; i < dataArray.length(); i++) {
 
                             JSONObject obj = dataArray.getJSONObject(i);
-                            cities.add(obj.getString("full_name"));
+                            String country = obj.getString("country_code_3");
+                            String city = obj.getString("full_name");
+                            String countryAndCity = country + ", " + city;
+//                            cities.add(obj.getString("country_code_3"));
+//                            cities.add(obj.getString("full_name"));
+                            cities.add(countryAndCity);
                             Log.d(TAG, "onResponse: city: " + (obj.getString("full_name")));
                         }
 
@@ -113,8 +118,9 @@ public class CitySearchActivity extends AppCompatActivity {
         });
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>
-                (this, android.R.layout.select_dialog_item, cities);
-        autoCompleteTextView.setThreshold(1); //will start working from first character
+                (this, R.layout.auto_complete_item,R.id.auto_complete_item_text_view, cities);
+
+//        autoCompleteTextView.setThreshold(3); //will start working from first character
         autoCompleteTextView.setAdapter(adapter);
     }
 }
