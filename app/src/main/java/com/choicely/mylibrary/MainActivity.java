@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.choicely.mylibrary.citySearch.CitySearchActivity;
 import com.choicely.mylibrary.countcowntimer.CountDownTimerActivity;
+import com.choicely.mylibrary.receiptSavingApp.ReceiptSavingAppActivity;
 import com.choicely.mylibrary.stringGenerator.StringGeneratorActivity;
 import com.choicely.mylibrary.viewpagers.ViewPagerTest2;
 
@@ -26,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private Button countDownTimerBtn;
     private Button citySearchBtn;
     private Button generateStrings;
-
+    private Button saveRecipes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         countDownTimerBtn = findViewById(R.id.count_down_timer);
         citySearchBtn = findViewById(R.id.city_search_button);
         generateStrings = findViewById(R.id.generate_strings);
-
+saveRecipes = findViewById(R.id.recipe_saving_app);
 
         rotatePicBtn.setOnClickListener(v -> {
             Intent intent = new Intent(this, SecondaryActivity.class);
@@ -101,6 +102,10 @@ public class MainActivity extends AppCompatActivity {
         });
         generateStrings.setOnClickListener(v -> {
             Intent intent = new Intent(this, StringGeneratorActivity.class);
+            startActivity(intent);
+        });
+        saveRecipes.setOnClickListener(v -> {
+            Intent intent = new Intent(this, ReceiptSavingAppActivity.class);
             startActivity(intent);
         });
     }
