@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private Button countDownTimerBtn;
     private Button citySearchBtn;
     private Button generateStrings;
-    private Button saveRecipes;
+    private Button saveReceipts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         countDownTimerBtn = findViewById(R.id.count_down_timer);
         citySearchBtn = findViewById(R.id.city_search_button);
         generateStrings = findViewById(R.id.generate_strings);
-saveRecipes = findViewById(R.id.recipe_saving_app);
+        saveReceipts = findViewById(R.id.receipt_saving_app);
 
         rotatePicBtn.setOnClickListener(v -> {
             Intent intent = new Intent(this, SecondaryActivity.class);
@@ -104,7 +104,7 @@ saveRecipes = findViewById(R.id.recipe_saving_app);
             Intent intent = new Intent(this, StringGeneratorActivity.class);
             startActivity(intent);
         });
-        saveRecipes.setOnClickListener(v -> {
+        saveReceipts.setOnClickListener(v -> {
             Intent intent = new Intent(this, ReceiptSavingAppActivity.class);
             startActivity(intent);
         });

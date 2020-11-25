@@ -107,10 +107,10 @@
             android:text="String generator"
             />
         <Button
-            android:id="@+id/recipe_saving_app"
+            android:id="@+id/receipt_saving_app"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Save recipes"
+            android:text="Save receipts"
             />
     </LinearLayout>
 
