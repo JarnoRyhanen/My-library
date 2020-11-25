@@ -15,8 +15,6 @@
         android:textSize="30dp"
         />
 
-
-
     <Button
         android:id="@+id/receipt_saving_app_activity_open_camera"
         android:layout_width="wrap_content"

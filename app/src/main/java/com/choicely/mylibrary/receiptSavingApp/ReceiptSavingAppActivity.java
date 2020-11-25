@@ -64,35 +64,40 @@ public class ReceiptSavingAppActivity extends AppCompatActivity {
         }
     }
 
-    private File createImageFile() throws IOException {
+    private File createImageFile() {
 
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String imageFileName = "JPEG_" + timeStamp + "_";
-        File storageDirectory = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-        File image = File.createTempFile(imageFileName, ".jpg", storageDirectory);
+        File image = null;
+        try {
+            String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+            String imageFileName = "JPEG_" + timeStamp + "_";
+            File storageDirectory = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+            pictureData.setPictureDir(storageDirectory.toString());
+            image = File.createTempFile(imageFileName, ".jpg", storageDirectory);
+            Log.d(TAG, "createImageFile: TIMESTAMP: " + timeStamp + ", IMAGE FILENAME: " + imageFileName + ", STORAGE DIRECTORY: " + storageDirectory);
 
-        currentPhotoPath = image.getAbsolutePath();
-        return image;
+            currentPhotoPath = image.getAbsolutePath();
+
+            return image;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     private void dispatchTakePictureIntent() {
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
-        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            File photoFile = null;
-            try {
-                photoFile = createImageFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-                Log.d(TAG, "dispatchTakePictureIntent:  #########################################WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW");
-            }
-            if (photoFile != null) {
-                photoUri = FileProvider.getUriForFile(this, "com.choicely.mylibrary.receiptSavingApp", photoFile);
-                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
-                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-            }
+        File photoFile = createImageFile();
 
+        if (photoFile != null) {
+            Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+            photoUri = FileProvider.getUriForFile(this, "com.choicely.mylibrary.receiptSavingApp", photoFile);
+            takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+            Log.d(TAG, "dispatchTakePictureIntent: PHOTOURI: " + photoUri);
         }
+
     }
 
 }

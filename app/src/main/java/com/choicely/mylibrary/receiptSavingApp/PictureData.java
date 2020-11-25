@@ -1,20 +1,34 @@
 package com.choicely.mylibrary.receiptSavingApp;
 
-import android.graphics.Bitmap;
-
 public class PictureData {
-    private Bitmap bitmapImage;
 
-    public Bitmap getBitmapImage() {
-        return bitmapImage;
+    private String pictureTitle;
+    private String pictureDate;
+    private String pictureDir;
+
+    public String getPictureDir() {
+        return pictureDir;
     }
 
-    public void setBitmapImage(Bitmap bitmapImage) {
-        this.bitmapImage = bitmapImage;
+    public void setPictureDir(String pictureDir) {
+        this.pictureDir = pictureDir;
     }
 
 
+    public String getPictureTitle() {
+        return pictureTitle;
+    }
 
+    public void setPictureTitle(String pictureTitle) {
+        this.pictureTitle = pictureTitle;
+    }
 
+    public String getPictureDate() {
+        return pictureDate;
+    }
+
+    public void setPictureDate(String pictureDate) {
+        this.pictureDate = pictureDate;
+    }
 
 }
