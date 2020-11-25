@@ -2,9 +2,18 @@ package com.choicely.mylibrary.receiptSavingApp;
 
 public class PictureData {
 
+    private int id;
     private String pictureTitle;
     private String pictureDate;
     private String pictureDir;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getPictureDir() {
         return pictureDir;
