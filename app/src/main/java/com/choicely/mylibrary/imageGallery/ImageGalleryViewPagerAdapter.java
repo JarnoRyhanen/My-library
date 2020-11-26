@@ -6,7 +6,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 class ImageGalleryViewPagerAdapter extends FragmentStateAdapter {
-    private static final int CARD_ITEM_SIZE = 5;
+    private static final int CARD_ITEM_SIZE = 2;
 
     public ImageGalleryViewPagerAdapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
@@ -15,11 +15,11 @@ class ImageGalleryViewPagerAdapter extends FragmentStateAdapter {
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-        return null;
+        return ImageFragment.newInstance(position);
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return CARD_ITEM_SIZE;
     }
 }
