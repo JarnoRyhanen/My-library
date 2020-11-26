@@ -5,6 +5,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -31,7 +33,6 @@ public class ReceiptSavingAppActivity extends AppCompatActivity {
 
     private static final String TAG = "ReceiptSavingApp";
     private Button openCameraBtn;
-    private Button searchBtn;
     private TextView textView;
 
 
@@ -53,7 +54,6 @@ public class ReceiptSavingAppActivity extends AppCompatActivity {
 
         openCameraBtn = findViewById(R.id.receipt_saving_app_activity_open_camera);
         textView = findViewById(R.id.receipt_saving_app_activity_text_view);
-        searchBtn = findViewById(R.id.receipt_saving_app_activity_search_button);
         recyclerView = findViewById(R.id.receipt_saving_app_activity_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new PictureAdapter(this);
@@ -63,8 +63,22 @@ public class ReceiptSavingAppActivity extends AppCompatActivity {
 
         updateContent();
 
-        searchBtn.setOnClickListener(v -> {
-            searchPicture();
+        textView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                searchForPictures();
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
         });
 
     }
@@ -131,9 +145,10 @@ public class ReceiptSavingAppActivity extends AppCompatActivity {
 
     }
 
-    private void searchPicture() {
+    private void searchForPictures() {
         adapter.clear();
         Realm realm = RealmHelper.getInstance().getRealm();
+
 
         String searchKey = String.valueOf(textView.getText());
 
@@ -146,10 +161,6 @@ public class ReceiptSavingAppActivity extends AppCompatActivity {
             adapter.add(picture);
         }
         adapter.notifyDataSetChanged();
-
-        Log.d(TAG, "loadPicture: pictures loaded");
-
-
     }
 
     private void updateContent() {

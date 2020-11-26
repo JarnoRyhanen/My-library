@@ -103,6 +103,8 @@ public class PictureTakenActivity extends AppCompatActivity {
 
         Log.d(TAG, "onClick: Title " + '"' + pictureData.getPictureTitle() + '"' + " and date " + '"' + pictureData.getPictureDate() + '"' + " successfully saved");
 
+
+
     }
 
 

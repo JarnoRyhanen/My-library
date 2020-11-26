@@ -36,8 +36,6 @@ public class PictureAdapter extends RecyclerView.Adapter<PictureAdapter.PictureV
     @Override
     public void onBindViewHolder(@NonNull PictureViewHolder holder, int position) {
 
-        //TODO put image titles and dates here
-
         PictureData picture = list.get(position);
 
         holder.pictureID = picture.getId();

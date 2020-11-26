@@ -13,13 +13,6 @@
         android:hint="title"
         android:padding="4dp"
         />
-
-    <ImageView
-        android:id="@+id/picture_list_row_image_view"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        />
-
     <TextView
         android:id="@+id/picture_list_row_date"
         android:layout_width="match_parent"
@@ -27,5 +20,12 @@
         android:hint="date"
         android:padding="4dp"
         />
+
+    <ImageView
+        android:id="@+id/picture_list_row_image_view"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        />
+
 
 </LinearLayout>
