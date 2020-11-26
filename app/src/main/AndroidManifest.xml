@@ -55,10 +55,11 @@
         <activity android:name=".stringGenerator.StringGeneratorActivity" />
         <activity android:name=".receiptSavingApp.ReceiptSavingAppActivity" />
         <activity android:name=".receiptSavingApp.PictureTakenActivity" />
+        <activity android:name=".imageGallery.ImageGalleryActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.choicely.mylibrary.receiptSavingApp"
+            android:authorities="com.choicely.mylibrary"
             android:exported="false"
             android:grantUriPermissions="true"
             >

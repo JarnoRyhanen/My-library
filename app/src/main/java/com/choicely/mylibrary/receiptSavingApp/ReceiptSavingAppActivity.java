@@ -137,7 +137,7 @@ public class ReceiptSavingAppActivity extends AppCompatActivity {
         if (photoFile != null) {
             Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
-            photoUri = FileProvider.getUriForFile(this, "com.choicely.mylibrary.receiptSavingApp", photoFile);
+            photoUri = FileProvider.getUriForFile(this, "com.choicely.mylibrary", photoFile);
             takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
             Log.d(TAG, "dispatchTakePictureIntent: PHOTOURI: " + photoUri);

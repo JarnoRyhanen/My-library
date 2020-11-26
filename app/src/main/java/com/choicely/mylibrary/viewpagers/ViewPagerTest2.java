@@ -8,10 +8,6 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.choicely.mylibrary.R;
 
-/**
- * This is the main activity for the view pager test.
- */
-
 public class ViewPagerTest2 extends AppCompatActivity {
 
     ViewPager2 viewPagerTest;

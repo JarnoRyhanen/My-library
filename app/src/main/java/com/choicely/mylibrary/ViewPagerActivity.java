@@ -8,7 +8,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 public class ViewPagerActivity extends AppCompatActivity {
 
-    ViewPager2 viewPager;
+    private ViewPager2 viewPager;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -1,27 +1,25 @@
-package com.choicely.mylibrary.viewpagers;
+package com.choicely.mylibrary.imageGallery;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-class PagerAdapter extends FragmentStateAdapter{
-    private final static int CARD_SIZE = 5;
+class ImageGalleryViewPagerAdapter extends FragmentStateAdapter {
+    private static final int CARD_ITEM_SIZE = 5;
 
-
-
-    public PagerAdapter(@NonNull FragmentActivity fragmentActivity) {
+    public ImageGalleryViewPagerAdapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
     }
 
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-        return CardFragmentTest.newInstance(position);
+        return null;
     }
 
     @Override
     public int getItemCount() {
-        return CARD_SIZE;
+        return 0;
     }
 }

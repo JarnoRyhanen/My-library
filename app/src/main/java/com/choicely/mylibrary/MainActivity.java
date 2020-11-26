@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.choicely.mylibrary.citySearch.CitySearchActivity;
 import com.choicely.mylibrary.countcowntimer.CountDownTimerActivity;
+import com.choicely.mylibrary.imageGallery.ImageGalleryActivity;
 import com.choicely.mylibrary.receiptSavingApp.ReceiptSavingAppActivity;
 import com.choicely.mylibrary.stringGenerator.StringGeneratorActivity;
 import com.choicely.mylibrary.viewpagers.ViewPagerTest2;
@@ -28,6 +29,9 @@ public class MainActivity extends AppCompatActivity {
     private Button citySearchBtn;
     private Button generateStrings;
     private Button saveReceipts;
+    private Button imageGallery;
+
+    private static final String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         citySearchBtn = findViewById(R.id.city_search_button);
         generateStrings = findViewById(R.id.generate_strings);
         saveReceipts = findViewById(R.id.receipt_saving_app);
+        imageGallery = findViewById(R.id.image_gallery);
 
         rotatePicBtn.setOnClickListener(v -> {
             Intent intent = new Intent(this, SecondaryActivity.class);
@@ -106,6 +111,11 @@ public class MainActivity extends AppCompatActivity {
         });
         saveReceipts.setOnClickListener(v -> {
             Intent intent = new Intent(this, ReceiptSavingAppActivity.class);
+            startActivity(intent);
+        });
+
+        imageGallery.setOnClickListener(v -> {
+            Intent intent = new Intent(this, ImageGalleryActivity.class);
             startActivity(intent);
         });
     }
