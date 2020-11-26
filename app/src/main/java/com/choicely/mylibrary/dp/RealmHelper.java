@@ -12,11 +12,11 @@ public class RealmHelper {
     private static final String REALM_NAME = "testlibrary.realm";
     private static final int REALM_VERSION = RealmHistory.VERSION_1;
 
+    private Realm realm;
+
     private static class RealmHistory {
         final static int VERSION_1 = 1;
     }
-
-    private Realm realm;
 
     private static RealmHelper instance;
 
@@ -24,7 +24,7 @@ public class RealmHelper {
 
     }
 
-    private static RealmHelper getInstance() {
+    public static RealmHelper getInstance() {
         if (instance == null) {
             throw new IllegalStateException(TAG + " is not initialized");
         }
@@ -40,6 +40,7 @@ public class RealmHelper {
         Realm.init(context);
         RealmConfiguration configuration = new RealmConfiguration.Builder()
                 .name(REALM_NAME)
+                .schemaVersion(REALM_VERSION)
                 .allowWritesOnUiThread(true)
                 .deleteRealmIfMigrationNeeded()
                 .build();

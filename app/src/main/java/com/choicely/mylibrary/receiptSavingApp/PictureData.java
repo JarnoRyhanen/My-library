@@ -1,11 +1,24 @@
 package com.choicely.mylibrary.receiptSavingApp;
 
-public class PictureData {
+import io.realm.RealmObject;
+
+public class PictureData extends RealmObject {
 
     private int id;
+
     private String pictureTitle;
     private String pictureDate;
     private String pictureDir;
+    private String pictureUri;
+
+    public String getPictureUri() {
+        return pictureUri;
+    }
+
+    public void setPictureUri(String pictureUri) {
+        this.pictureUri = pictureUri;
+    }
+
 
     public int getId() {
         return id;

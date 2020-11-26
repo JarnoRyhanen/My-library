@@ -6,19 +6,37 @@
     android:orientation="vertical"
     >
 
-    <TextView
+    <EditText
         android:id="@+id/receipt_saving_app_activity_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/receipt_saving_app_activity_search_button"
         android:gravity="center"
-        android:text="This is a saving app for receipts"
-        android:textSize="30dp"
+        android:hint="Search for your \nreceipts by name or date"
+        android:textSize="15dp"
+        />
+
+    <Button
+        android:id="@+id/receipt_saving_app_activity_search_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:text="Search"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/receipt_saving_app_activity_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/receipt_saving_app_activity_open_camera"
+        android:layout_below="@id/receipt_saving_app_activity_text_view"
         />
 
     <Button
         android:id="@+id/receipt_saving_app_activity_open_camera"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
         android:onClick="onClick"
         android:text="Open camera and \n take a picture"

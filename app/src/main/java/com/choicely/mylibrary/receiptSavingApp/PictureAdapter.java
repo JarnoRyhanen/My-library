@@ -2,6 +2,7 @@ package com.choicely.mylibrary.receiptSavingApp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,8 +36,14 @@ public class PictureAdapter extends RecyclerView.Adapter<PictureAdapter.PictureV
     @Override
     public void onBindViewHolder(@NonNull PictureViewHolder holder, int position) {
 
-        //TODO put image titles and aates here
+        //TODO put image titles and dates here
 
+        PictureData picture = list.get(position);
+
+        holder.pictureID = picture.getId();
+        holder.title.setText(picture.getPictureTitle());
+        holder.date.setText(picture.getPictureDate());
+        holder.imageView.setImageURI(Uri.parse(picture.getPictureUri()));
     }
 
     public void add(PictureData picture) {
@@ -66,13 +73,16 @@ public class PictureAdapter extends RecyclerView.Adapter<PictureAdapter.PictureV
 
             title = view.findViewById(R.id.picture_list_row_title);
             date = view.findViewById(R.id.picture_list_row_date);
+            imageView = view.findViewById(R.id.picture_list_row_image_view);
         }
 
         private View.OnClickListener onRowClick = view -> {
+        PictureData pictureData = new PictureData();
 
             Context ctx = itemView.getContext();
-            Intent intent = new Intent(ctx, ReceiptSavingAppActivity.class);
+            Intent intent = new Intent(ctx, PictureTakenActivity.class);
             intent.putExtra(IntentKeys.PICTURE_ID, pictureID);
+            intent.putExtra("resID", pictureData.getPictureUri());
             ctx.startActivity(intent);
         };
 
