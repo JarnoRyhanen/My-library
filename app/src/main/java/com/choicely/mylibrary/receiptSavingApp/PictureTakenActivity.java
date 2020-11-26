@@ -74,9 +74,12 @@ public class PictureTakenActivity extends AppCompatActivity {
         Realm realm = RealmHelper.getInstance().getRealm();
         PictureData picture = realm.where(PictureData.class).equalTo("id", pictureId).findFirst();
 
+        photoUri = Uri.parse(picture.getPictureUri());
+
         title.setText(picture.getPictureTitle());
         date.setText(picture.getPictureDate());
-        imageView.setImageURI(Uri.parse(picture.getPictureUri()));
+        imageView.setImageURI(photoUri);
+        Log.d(TAG, "loadPicture: photoUri: " + photoUri);
 
     }
 

@@ -77,12 +77,10 @@ public class PictureAdapter extends RecyclerView.Adapter<PictureAdapter.PictureV
         }
 
         private View.OnClickListener onRowClick = view -> {
-        PictureData pictureData = new PictureData();
 
             Context ctx = itemView.getContext();
             Intent intent = new Intent(ctx, PictureTakenActivity.class);
             intent.putExtra(IntentKeys.PICTURE_ID, pictureID);
-            intent.putExtra("resID", pictureData.getPictureUri());
             ctx.startActivity(intent);
         };
 

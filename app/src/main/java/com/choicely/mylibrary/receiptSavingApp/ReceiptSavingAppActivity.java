@@ -64,7 +64,7 @@ public class ReceiptSavingAppActivity extends AppCompatActivity {
         updateContent();
 
         searchBtn.setOnClickListener(v -> {
-            loadPicture();
+            searchPicture();
         });
 
     }
@@ -79,7 +79,6 @@ public class ReceiptSavingAppActivity extends AppCompatActivity {
         Log.d(TAG, "onClick: Camera opened");
 
         dispatchTakePictureIntent();
-
     }
 
     String currentPhotoPath;
@@ -132,13 +131,23 @@ public class ReceiptSavingAppActivity extends AppCompatActivity {
 
     }
 
-    private void loadPicture() {
+    private void searchPicture() {
+        adapter.clear();
         Realm realm = RealmHelper.getInstance().getRealm();
 
-        PictureData picture = realm.where(PictureData.class).findFirst();
+        String searchKey = String.valueOf(textView.getText());
 
+        RealmResults<PictureData> pictures = realm.where(PictureData.class).contains("pictureTitle", searchKey).or()
+                .contains("pictureDate", searchKey).findAll();
 
-        Log.d(TAG, "loadPicture: picture loaded");
+        adapter.clear();
+
+        for (PictureData picture : pictures) {
+            adapter.add(picture);
+        }
+        adapter.notifyDataSetChanged();
+
+        Log.d(TAG, "loadPicture: pictures loaded");
 
 
     }
