@@ -18,7 +18,7 @@ public class ImageGalleryActivity extends AppCompatActivity {
 
     private ViewPager2 viewPager2;
     private Button addImages;
-
+    private int imageID;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -26,10 +26,10 @@ public class ImageGalleryActivity extends AppCompatActivity {
         setContentView(R.layout.image_gallery_activity);
         viewPager2 = findViewById(R.id.image_gallery_activity_view_pager);
         addImages = findViewById(R.id.image_gallery_add_images);
-
-
-
         viewPager2.setAdapter(createAdapter());
+
+//        imageID = getIntent().getIntExtra(IntentKeys.IMAGE_ID, -1);
+
     }
 
     private ImageGalleryViewPagerAdapter createAdapter() {
