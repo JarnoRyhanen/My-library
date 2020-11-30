@@ -96,17 +96,10 @@ public class PictureTakenActivity extends AppCompatActivity {
         pictureData.setPictureTitle(title.getText().toString());
         pictureData.setPictureDate(date.getText().toString());
 
-
         realm.executeTransaction(realm1 -> {
             realm.insertOrUpdate(pictureData);
         });
-
         Log.d(TAG, "onClick: Title " + '"' + pictureData.getPictureTitle() + '"' + " and date " + '"' + pictureData.getPictureDate() + '"' + " successfully saved");
-
-
-
     }
-
-
 }
 

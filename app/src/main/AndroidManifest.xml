@@ -57,6 +57,7 @@
         <activity android:name=".receiptSavingApp.PictureTakenActivity" />
         <activity android:name=".imageGallery.ImageGalleryActivity" />
         <activity android:name=".imageGallery.AddImageActivity"/>
+        <activity android:name=".imageGallery.UpdateImage"/>
 
         <provider
             android:name="androidx.core.content.FileProvider"

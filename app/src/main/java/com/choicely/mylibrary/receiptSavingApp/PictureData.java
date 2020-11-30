@@ -1,9 +1,10 @@
 package com.choicely.mylibrary.receiptSavingApp;
 
 import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
 public class PictureData extends RealmObject {
-
+    @PrimaryKey
     private int id;
 
     private String pictureTitle;
