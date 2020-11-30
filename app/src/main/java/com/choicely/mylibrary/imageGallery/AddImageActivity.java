@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +25,7 @@ public class AddImageActivity extends AppCompatActivity {
     private EditText title;
     private ImageView imageView;
     private Button addImage;
+    private Button delete;
     private View AddImageActivity;
 
     private int imageID;
@@ -39,14 +41,14 @@ public class AddImageActivity extends AppCompatActivity {
         imageView = findViewById(R.id.add_image_activity_image_view);
         addImage = findViewById(R.id.add_image_activity_add_image_button);
         title = findViewById(R.id.add_image_activity_title);
-
+        delete = findViewById(R.id.add_image_activity_delete_button);
 
         imageID = getIntent().getIntExtra(IntentKeys.IMAGE_ID, -1);
 
         if (imageID == -1) {
             newImage();
         } else {
-             loadImage();
+            loadImage();
         }
     }
 
@@ -57,13 +59,14 @@ public class AddImageActivity extends AppCompatActivity {
 
         Realm realm = RealmHelper.getInstance().getRealm();
         ImageData lastImage = realm.where(ImageData.class).sort("id", Sort.DESCENDING).findFirst();
-
+        delete.setVisibility(View.GONE);
         if (lastImage != null) {
             imageID = lastImage.getId() + 1;
         } else {
             imageID = 0;
         }
     }
+
     private void loadImage() {
         Log.d(TAG, "loadImage: ##################################################");
         Realm realm = RealmHelper.getInstance().getRealm();
@@ -102,5 +105,21 @@ public class AddImageActivity extends AppCompatActivity {
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
 
+    }
+
+    public void deleteImage(View view) {
+
+        Realm realm = RealmHelper.getInstance().getRealm();
+
+        realm.executeTransaction(realm1 -> {
+            ImageData results = realm1.where(ImageData.class).equalTo("id", imageID).findFirst();
+                results.deleteFromRealm();
+        });
+
+        Toast.makeText(this,"Image deleted",Toast.LENGTH_SHORT).show();
+
+        Intent intent = new Intent(this, ImageGalleryActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 }

@@ -4,9 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -17,10 +15,6 @@ import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.choicely.mylibrary.R;
-import com.choicely.mylibrary.dp.RealmHelper;
-
-import io.realm.Realm;
-import io.realm.RealmResults;
 
 public class ImageFragment extends Fragment {
     public final static String ARGUMENT_COUNT = "param1";
@@ -55,9 +49,9 @@ public class ImageFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         ImageView imageView = view.findViewById(R.id.image_gallery_fragments_image_view);
 //        TextView textView = view.findViewById(R.id.image_gallery_fragments_title);
-
+//
 //        Log.d(TAG, "onViewCreated: TITLE:" + title);
-//        textView.setText(title);
+//        textView.setText("sdfghgrarstdygfh");
 
         Glide.with(this)
                 .load(url)
@@ -66,34 +60,14 @@ public class ImageFragment extends Fragment {
         Log.d(TAG, "onViewCreated: counter: " + counter);
         imageID = counter;
 
-        view.setOnClickListener(v -> {
+        imageView.setOnClickListener(v -> {
             Context context = view.getContext();
             Intent intent = new Intent(context, AddImageActivity.class);
             intent.putExtra(IntentKeys.IMAGE_ID, imageID);
             context.startActivity(intent);
         });
 
-        registerForContextMenu(imageView);
-    }
-
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        super.onCreateContextMenu(menu, v, menuInfo);
-        menu.add(0, v.getId(), 0, "Delete");
-    }
-
-    @Override
-    public boolean onContextItemSelected(@NonNull MenuItem item) {
-        if (item.getTitle() == "Delete") {
-            Realm realm = RealmHelper.getInstance().getRealm();
-
-            realm.executeTransaction(realm1 -> {
-                RealmResults<ImageData> results = realm1.where(ImageData.class).findAll();
-                results.deleteFromRealm(imageID);
-
-            });
-
-            Log.d(TAG, "onContextItemSelected: Image Deleted");
-        }
-        return super.onContextItemSelected(item);
     }
 }
+
+

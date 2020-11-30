@@ -12,7 +12,6 @@ import java.util.List;
 
 import static com.choicely.mylibrary.imageGallery.ImageFragment.ARGUMENT_COUNT;
 import static com.choicely.mylibrary.imageGallery.ImageFragment.COUNTER;
-import static com.choicely.mylibrary.imageGallery.ImageFragment.TITLE;
 
 class ImageGalleryViewPagerAdapter extends FragmentStateAdapter {
 
@@ -39,7 +38,6 @@ class ImageGalleryViewPagerAdapter extends FragmentStateAdapter {
         Bundle args = new Bundle();
         args.putString(ARGUMENT_COUNT, images.get(position));
         args.putInt(COUNTER, position);
-        args.putString(TITLE, imageData.getTitle());
         imageFragment.setArguments(args);
         return imageFragment;
     }

@@ -39,7 +39,6 @@
             android:textSize="10dp"
             />
 
-
     </LinearLayout>
 
     <EditText
@@ -52,6 +51,18 @@
         android:textSize="20dp"
         android:maxLines="1"
 
+        />
+    <Button
+        android:id="@+id/add_image_activity_delete_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:backgroundTint="#56918888"
+        android:onClick="deleteImage"
+        android:text="Delete"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/add_image_activity_image_view"
+        android:textSize="20dp"
         />
 
     <ImageView
