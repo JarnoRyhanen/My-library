@@ -95,7 +95,6 @@ public class CitySearchActivity extends AppCompatActivity {
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 if (response.isSuccessful()) {
                     String myResponse = response.body().string();
-                    Log.d(TAG, "onResponse: this is the json" + myResponse);
 
                     try {
                         JSONObject jsonObject = new JSONObject(myResponse);

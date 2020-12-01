@@ -149,13 +149,10 @@ public class ReceiptSavingAppActivity extends AppCompatActivity {
         adapter.clear();
         Realm realm = RealmHelper.getInstance().getRealm();
 
-
         String searchKey = String.valueOf(textView.getText());
 
         RealmResults<PictureData> pictures = realm.where(PictureData.class).contains("pictureTitle", searchKey).or()
                 .contains("pictureDate", searchKey).findAll();
-
-        adapter.clear();
 
         for (PictureData picture : pictures) {
             adapter.add(picture);

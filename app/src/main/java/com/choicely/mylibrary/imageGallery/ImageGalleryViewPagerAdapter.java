@@ -1,6 +1,7 @@
 package com.choicely.mylibrary.imageGallery;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -10,20 +11,21 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.choicely.mylibrary.imageGallery.ImageFragment.ARGUMENT_COUNT;
-import static com.choicely.mylibrary.imageGallery.ImageFragment.COUNTER;
+import static com.choicely.mylibrary.imageGallery.ImageFragment.IMAGE_ID;
+import static com.choicely.mylibrary.imageGallery.ImageFragment.TITLE;
+import static com.choicely.mylibrary.imageGallery.ImageFragment.URL;
 
 class ImageGalleryViewPagerAdapter extends FragmentStateAdapter {
 
     private final static String TAG = "GalleryPagerAdapter";
-    List<String> images = new ArrayList<>();
-    ImageData imageData = new ImageData();
+
+    List<ImageData> images = new ArrayList<>();
 
     public ImageGalleryViewPagerAdapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
     }
 
-    public void addImage(String image) {
+    public void addImage(ImageData image) {
         images.add(image);
     }
 
@@ -34,12 +36,24 @@ class ImageGalleryViewPagerAdapter extends FragmentStateAdapter {
     @NonNull
     @Override
     public Fragment createFragment(int position) {
+
         ImageFragment imageFragment = new ImageFragment();
         Bundle args = new Bundle();
-        args.putString(ARGUMENT_COUNT, images.get(position));
-        args.putInt(COUNTER, position);
+
+        ImageData image = images.get(position);
+        Log.d(TAG, "image: fragment position: position: "+position+" url: "+image.getUrl());
+
+        args.putString(URL, image.getUrl());
+        args.putInt(IMAGE_ID, image.getId());
+        args.putString(TITLE, image.getTitle());
+
         imageFragment.setArguments(args);
         return imageFragment;
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return images.get(position).getId();
     }
 
     @Override

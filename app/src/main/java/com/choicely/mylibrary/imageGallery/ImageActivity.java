@@ -2,6 +2,8 @@ package com.choicely.mylibrary.imageGallery;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -19,16 +21,16 @@ import com.choicely.mylibrary.dp.RealmHelper;
 import io.realm.Realm;
 import io.realm.Sort;
 
-public class AddImageActivity extends AppCompatActivity {
+public class ImageActivity extends AppCompatActivity {
 
     private EditText urlField;
     private EditText title;
     private ImageView imageView;
     private Button addImage;
     private Button delete;
-    private View AddImageActivity;
 
     private int imageID;
+
 
     private final static String TAG = "AddImageActivity";
 
@@ -61,6 +63,29 @@ public class AddImageActivity extends AppCompatActivity {
         ImageData lastImage = realm.where(ImageData.class).sort("id", Sort.DESCENDING).findFirst();
         delete.setVisibility(View.GONE);
         if (lastImage != null) {
+
+            urlField.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                    String urlFieldText = urlField.getText().toString();
+
+                    Glide.with(ImageActivity.this)
+                            .load(urlFieldText)
+                            .into(imageView);
+                }
+            });
+
+
             imageID = lastImage.getId() + 1;
         } else {
             imageID = 0;
@@ -113,10 +138,10 @@ public class AddImageActivity extends AppCompatActivity {
 
         realm.executeTransaction(realm1 -> {
             ImageData results = realm1.where(ImageData.class).equalTo("id", imageID).findFirst();
-                results.deleteFromRealm();
+            results.deleteFromRealm();
         });
 
-        Toast.makeText(this,"Image deleted",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Image deleted", Toast.LENGTH_SHORT).show();
 
         Intent intent = new Intent(this, ImageGalleryActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
