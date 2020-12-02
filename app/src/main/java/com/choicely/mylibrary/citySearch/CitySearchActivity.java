@@ -92,11 +92,11 @@ public class CitySearchActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+            public void onResponse(@NotNull Call call, @NotNull Response response)  {
                 if (response.isSuccessful()) {
-                    String myResponse = response.body().string();
 
                     try {
+                        String myResponse = response.body().string();
                         JSONObject jsonObject = new JSONObject(myResponse);
                         JSONArray dataArray = jsonObject.getJSONArray("data");
 
@@ -114,7 +114,7 @@ public class CitySearchActivity extends AppCompatActivity {
                             Log.d(TAG, "onResponse: city: " + (obj.getString("full_name")));
                         }
 
-                    } catch (JSONException e) {
+                    } catch (JSONException | IOException e) {
                         e.printStackTrace();
                     }
                 }
@@ -126,7 +126,6 @@ public class CitySearchActivity extends AppCompatActivity {
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>
                 (this, R.layout.auto_complete_item, R.id.auto_complete_item_text_view, cities);
-
         autoCompleteTextView.setAdapter(adapter);
     }
 }

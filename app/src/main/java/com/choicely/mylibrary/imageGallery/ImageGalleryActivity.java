@@ -40,14 +40,20 @@ public class ImageGalleryActivity extends AppCompatActivity {
         addImages = findViewById(R.id.image_gallery_add_images);
         spinner = findViewById(R.id.image_gallery_activity_spinner);
 
-        adapter = new ImageGalleryViewPagerAdapter(this);
 
+        //creates and sets the an adapter for the viewpager
+        adapter = new ImageGalleryViewPagerAdapter(this);
         viewPager2.setAdapter(adapter);
+
+
         createSpinnerAndListen();
         Log.d(TAG, "Image Count: " + adapter.getItemCount());
     }
 
+    //Creates a drop down menu
     private void createSpinnerAndListen() {
+
+        //List of items in the drop down menu
         List<String> imageTypes = new ArrayList<String>();
         imageTypes.add("No filter");
         imageTypes.add(".png");
@@ -55,12 +61,13 @@ public class ImageGalleryActivity extends AppCompatActivity {
         imageTypes.add(".gif");
         imageTypes.add(".webP");
 
+        //Adapter for the menu
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, R.layout.spinner_item, imageTypes);
         spinner.setAdapter(arrayAdapter);
 
 
+        //Listener for items in the menu
         AdapterView.OnItemSelectedListener onItemSelectedListener = new AdapterView.OnItemSelectedListener() {
-
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String item = parent.getItemAtPosition(position).toString();
@@ -70,7 +77,7 @@ public class ImageGalleryActivity extends AppCompatActivity {
                     updateContent();
                 } else {
                     suffix = item;
-                    showFilteredImages();
+                    filterImages();
                 }
             }
 
@@ -79,26 +86,31 @@ public class ImageGalleryActivity extends AppCompatActivity {
                 Log.d(TAG, "onNothingSelected: Nothing is selected");
             }
         };
+        //Sets the listener for the menu
         spinner.setOnItemSelectedListener(onItemSelectedListener);
     }
 
-    private void showFilteredImages() {
+    //Filter images
+    private void filterImages() {
         adapter.clear();
         adapter.notifyDataSetChanged();
 
+        //Instance of realm and a search query for data in the database
         Realm realm = RealmHelper.getInstance().getRealm();
         RealmResults<ImageData> images = realm.where(ImageData.class).contains("url", suffix.toLowerCase()).findAll();
 
+        //Iterates every image found with the query and adds them to the adapter
         for (ImageData image : images) {
             adapter.addImage(image);
-            Log.d(TAG, "image: "+image.getUrl());
+            Log.d(TAG, "image: " + image.getUrl());
         }
+        //Notifies the adapter that data has changed
         adapter.notifyDataSetChanged();
-
-       //Log.d(TAG, "onItemSelected: images" + images);
     }
 
-    void updateContent() {
+
+    //Iterates every image from the database and adds them in the adapter
+    private void updateContent() {
         adapter.clear();
         Realm realm = RealmHelper.getInstance().getRealm();
         RealmResults<ImageData> images = realm.where(ImageData.class).findAll();
@@ -108,12 +120,14 @@ public class ImageGalleryActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
     }
 
+
     @Override
     protected void onResume() {
         super.onResume();
         updateContent();
     }
 
+    //Opens a new window
     public void onClick(View view) {
         Intent intent = new Intent(this, ImageActivity.class);
         startActivity(intent);

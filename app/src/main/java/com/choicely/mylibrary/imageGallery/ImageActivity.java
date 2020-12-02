@@ -47,6 +47,8 @@ public class ImageActivity extends AppCompatActivity {
 
         imageID = getIntent().getIntExtra(IntentKeys.IMAGE_ID, -1);
 
+
+
         if (imageID == -1) {
             newImage();
         } else {
@@ -54,14 +56,16 @@ public class ImageActivity extends AppCompatActivity {
         }
     }
 
-
+//Creates a new image
     private void newImage() {
 
-        Log.d(TAG, "newImage: @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@22");
+
 
         Realm realm = RealmHelper.getInstance().getRealm();
         ImageData lastImage = realm.where(ImageData.class).sort("id", Sort.DESCENDING).findFirst();
         delete.setVisibility(View.GONE);
+
+        //checks if previous images already exists in Realm and gives the new image an ID
         if (lastImage != null) {
 
             urlField.addTextChangedListener(new TextWatcher() {
@@ -87,24 +91,27 @@ public class ImageActivity extends AppCompatActivity {
 
 
             imageID = lastImage.getId() + 1;
-        } else {
+        }
+        //if there were no previous images, create a new image with id 0
+        else {
             imageID = 0;
         }
     }
 
+    //Simply load an image that was clicked in the gallery
     private void loadImage() {
-        Log.d(TAG, "loadImage: ##################################################");
         Realm realm = RealmHelper.getInstance().getRealm();
         ImageData image = realm.where(ImageData.class).equalTo("id", imageID).findFirst();
+
 
         String url = image.getUrl();
         urlField.setText(url);
 
-        Log.d(TAG, "loadImage: ID:  " + image.getId());
         Log.d(TAG, "loadImage: imageID: " + imageID);
-
         Log.d(TAG, "loadImage: URL: " + url);
+
         title.setText(image.getTitle());
+
 
         Glide.with(this)
                 .load(url)
@@ -114,30 +121,37 @@ public class ImageActivity extends AppCompatActivity {
         addImage.setText("Update");
     }
 
+    //Save the image
     public void onClick(View view) {
+
         Realm realm = RealmHelper.getInstance().getRealm();
         ImageData imageData = new ImageData();
 
         imageData.setId(imageID);
         imageData.setUrl(String.valueOf(urlField.getText()));
         imageData.setTitle(title.getText().toString());
+
         realm.executeTransaction(realm1 -> {
             realm.insertOrUpdate(imageData);
         });
 
         Log.d(TAG, "onClick: Image saved with the ID: " + imageData.getId());
+
         Intent intent = new Intent(this, ImageGalleryActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
 
     }
 
+
+    //Deletes the image from database and gallery
     public void deleteImage(View view) {
 
         Realm realm = RealmHelper.getInstance().getRealm();
 
+        ImageData results = realm.where(ImageData.class).equalTo("id", imageID).findFirst();
+
         realm.executeTransaction(realm1 -> {
-            ImageData results = realm1.where(ImageData.class).equalTo("id", imageID).findFirst();
             results.deleteFromRealm();
         });
 
