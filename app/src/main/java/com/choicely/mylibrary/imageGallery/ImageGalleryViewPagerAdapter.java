@@ -12,8 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.choicely.mylibrary.imageGallery.ImageFragment.IMAGE_ID;
-import static com.choicely.mylibrary.imageGallery.ImageFragment.TITLE;
-import static com.choicely.mylibrary.imageGallery.ImageFragment.URL;
 
 class ImageGalleryViewPagerAdapter extends FragmentStateAdapter {
 
@@ -50,9 +48,7 @@ class ImageGalleryViewPagerAdapter extends FragmentStateAdapter {
         ImageData image = images.get(position);
         Log.d(TAG, "image: fragment position: position: "+position+" url: "+image.getUrl());
 
-        args.putString(URL, image.getUrl());
         args.putInt(IMAGE_ID, image.getId());
-        args.putString(TITLE, image.getTitle());
 
         imageFragment.setArguments(args);
         return imageFragment;

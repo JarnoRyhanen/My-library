@@ -6,6 +6,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.choicely.mylibrary.blackJack.BlackJackActivity;
 import com.choicely.mylibrary.citySearch.CitySearchActivity;
 import com.choicely.mylibrary.countcowntimer.CountDownTimerActivity;
 import com.choicely.mylibrary.imageGallery.ImageGalleryActivity;
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private Button generateStrings;
     private Button saveReceipts;
     private Button imageGallery;
+    private Button blackJack;
 
     private static final String TAG = "MainActivity";
 
@@ -55,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
         generateStrings = findViewById(R.id.generate_strings);
         saveReceipts = findViewById(R.id.receipt_saving_app);
         imageGallery = findViewById(R.id.image_gallery);
+        blackJack = findViewById(R.id.black_jack);
+
 
         rotatePicBtn.setOnClickListener(v -> {
             Intent intent = new Intent(this, SecondaryActivity.class);
@@ -116,6 +120,10 @@ public class MainActivity extends AppCompatActivity {
 
         imageGallery.setOnClickListener(v -> {
             Intent intent = new Intent(this, ImageGalleryActivity.class);
+            startActivity(intent);
+        });
+        blackJack.setOnClickListener(v -> {
+            Intent intent = new Intent(this, BlackJackActivity.class);
             startActivity(intent);
         });
     }

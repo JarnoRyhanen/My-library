@@ -1,6 +1,5 @@
 package com.choicely.mylibrary.imageGallery;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -21,7 +20,7 @@ import com.choicely.mylibrary.dp.RealmHelper;
 import io.realm.Realm;
 import io.realm.Sort;
 
-public class ImageActivity extends AppCompatActivity {
+public class EditImageActivity extends AppCompatActivity {
 
     private EditText urlField;
     private EditText title;
@@ -31,8 +30,7 @@ public class ImageActivity extends AppCompatActivity {
 
     private int imageID;
 
-
-    private final static String TAG = "AddImageActivity";
+    private final static String TAG = "EditImageActivity";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,8 +45,6 @@ public class ImageActivity extends AppCompatActivity {
 
         imageID = getIntent().getIntExtra(IntentKeys.IMAGE_ID, -1);
 
-
-
         if (imageID == -1) {
             newImage();
         } else {
@@ -56,10 +52,8 @@ public class ImageActivity extends AppCompatActivity {
         }
     }
 
-//Creates a new image
+    //Creates a new image
     private void newImage() {
-
-
 
         Realm realm = RealmHelper.getInstance().getRealm();
         ImageData lastImage = realm.where(ImageData.class).sort("id", Sort.DESCENDING).findFirst();
@@ -83,7 +77,7 @@ public class ImageActivity extends AppCompatActivity {
                 public void afterTextChanged(Editable s) {
                     String urlFieldText = urlField.getText().toString();
 
-                    Glide.with(ImageActivity.this)
+                    Glide.with(EditImageActivity.this)
                             .load(urlFieldText)
                             .into(imageView);
                 }
@@ -102,7 +96,6 @@ public class ImageActivity extends AppCompatActivity {
     private void loadImage() {
         Realm realm = RealmHelper.getInstance().getRealm();
         ImageData image = realm.where(ImageData.class).equalTo("id", imageID).findFirst();
-
 
         String url = image.getUrl();
         urlField.setText(url);
@@ -136,11 +129,7 @@ public class ImageActivity extends AppCompatActivity {
         });
 
         Log.d(TAG, "onClick: Image saved with the ID: " + imageData.getId());
-
-        Intent intent = new Intent(this, ImageGalleryActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
-
+        finish();
     }
 
 
@@ -157,8 +146,6 @@ public class ImageActivity extends AppCompatActivity {
 
         Toast.makeText(this, "Image deleted", Toast.LENGTH_SHORT).show();
 
-        Intent intent = new Intent(this, ImageGalleryActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
+        finish();
     }
 }

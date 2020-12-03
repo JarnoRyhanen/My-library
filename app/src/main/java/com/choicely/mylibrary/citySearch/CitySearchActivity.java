@@ -21,6 +21,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -33,11 +34,11 @@ import okhttp3.Response;
 public class CitySearchActivity extends AppCompatActivity {
 
     private static final String TAG = "CitySearchActivity";
-    OkHttpClient client = new OkHttpClient();
+    private OkHttpClient client = new OkHttpClient();
 
     private AutoCompleteTextView autoCompleteTextView;
     private ProgressBar progressBar;
-    ArrayList<String> cities = new ArrayList<String>();
+    private List<String> cities = new ArrayList<>();
 
 
     @Override
@@ -67,7 +68,6 @@ public class CitySearchActivity extends AppCompatActivity {
             }
         });
 
-
     }
 
     private void parseJson() {
@@ -92,7 +92,7 @@ public class CitySearchActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onResponse(@NotNull Call call, @NotNull Response response)  {
+            public void onResponse(@NotNull Call call, @NotNull Response response) {
                 if (response.isSuccessful()) {
 
                     try {
@@ -124,7 +124,7 @@ public class CitySearchActivity extends AppCompatActivity {
             }
         });
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>
+        ArrayAdapter<String> adapter = new ArrayAdapter<>
                 (this, R.layout.auto_complete_item, R.id.auto_complete_item_text_view, cities);
         autoCompleteTextView.setAdapter(adapter);
     }

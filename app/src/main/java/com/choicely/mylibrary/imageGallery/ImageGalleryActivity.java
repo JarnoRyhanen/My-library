@@ -47,6 +47,7 @@ public class ImageGalleryActivity extends AppCompatActivity {
 
 
         createSpinnerAndListen();
+        updateContent();
         Log.d(TAG, "Image Count: " + adapter.getItemCount());
     }
 
@@ -70,15 +71,10 @@ public class ImageGalleryActivity extends AppCompatActivity {
         AdapterView.OnItemSelectedListener onItemSelectedListener = new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String item = parent.getItemAtPosition(position).toString();
-                Log.d(TAG, "onItemSelected: " + item);
+                suffix = parent.getItemAtPosition(position).toString();
+                Log.d(TAG, "onItemSelected: " + suffix);
 
-                if (item.equals("No filter")) {
-                    updateContent();
-                } else {
-                    suffix = item;
-                    filterImages();
-                }
+                performFilter();
             }
 
             @Override
@@ -90,10 +86,17 @@ public class ImageGalleryActivity extends AppCompatActivity {
         spinner.setOnItemSelectedListener(onItemSelectedListener);
     }
 
+    private void performFilter() {
+        if (suffix == null || suffix.equals("No filter")) {
+            updateContent();
+        } else {
+            filterImages();
+        }
+    }
+
     //Filter images
     private void filterImages() {
         adapter.clear();
-        adapter.notifyDataSetChanged();
 
         //Instance of realm and a search query for data in the database
         Realm realm = RealmHelper.getInstance().getRealm();
@@ -109,6 +112,12 @@ public class ImageGalleryActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        performFilter();
+    }
+
     //Iterates every image from the database and adds them in the adapter
     private void updateContent() {
         adapter.clear();
@@ -120,16 +129,9 @@ public class ImageGalleryActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
     }
 
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        updateContent();
-    }
-
     //Opens a new window
     public void onClick(View view) {
-        Intent intent = new Intent(this, ImageActivity.class);
+        Intent intent = new Intent(this, EditImageActivity.class);
         startActivity(intent);
     }
 
