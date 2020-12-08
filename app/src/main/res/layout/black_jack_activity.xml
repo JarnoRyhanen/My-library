@@ -1,168 +1,170 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/card_table"
-    android:orientation="vertical"
     >
 
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/dealers_hand_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        >
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:text="Dealer's hand"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        />
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+    <include
+        android:id="@+id/bj_dealers_hand_layout"
+        layout="@layout/player_hand_values"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_below="@id/dealers_hand_title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        />
 
-            >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:text="Dealer"
-                android:textColor="@color/black"
-                android:textSize="15sp"
-
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:padding="30sp"
-                android:text="20"
-                android:textColor="@color/black"
-                android:textSize="40sp"
-                />
-
-        </RelativeLayout>
-
-
-    </LinearLayout>
-
-    <LinearLayout
+    <TextView
+        android:id="@+id/player_hand_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/black_jack_buttons"
+        android:layout_above="@id/player"
         android:layout_centerHorizontal="true"
-        >
+        android:layout_marginTop="20dp"
+        android:text="Player"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        />
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:text="Player"
-                android:textColor="@color/black"
-                android:textSize="15sp"
-
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:padding="30sp"
-                android:text="20"
-                android:textColor="@color/black"
-                android:textSize="40sp"
-                />
-
-        </RelativeLayout>
-
-
-    </LinearLayout>
-
-    <LinearLayout
-
-        android:id="@+id/black_jack_buttons"
+    <RelativeLayout
+        android:id="@+id/player"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         android:orientation="vertical"
-        android:layout_above="@id/black_jack_play_again"
         >
 
-
-        <Button
-            android:id="@+id/black_jack_start_game"
+        <LinearLayout
+            android:id="@+id/player_hand_values"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:onClick="onStartGameClicked"
-            android:text="Start Game"
-
-            />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="50dp"
+            android:gravity="center_horizontal"
             >
 
-
-            <Button
-                android:id="@+id/black_jack_hit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="onHitClicked"
-                android:text="Hit"
+            <include
+                android:id="@+id/player_player_hand_1_values"
+                layout="@layout/player_hand_values"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
                 />
 
-            <Button
-                android:id="@+id/black_jack_surrender"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:onClick="onSurrenderClicked"
-                android:text="Surrender"
-                />
-
-
-            <Button
-                android:id="@+id/black_jack_stand"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="onStandClicked"
-                android:text="Stand"
+            <include
+                android:id="@+id/player_player_hand_2_values"
+                layout="@layout/player_hand_values"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:visibility="gone"
+                tools:visibility="visible"
                 />
 
         </LinearLayout>
 
+        <Button
+            android:id="@+id/bj_hit_button"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_below="@id/player_hand_values"
+            android:layout_centerHorizontal="true"
+            android:text="hit"
+            />
 
+        <Button
+            android:id="@+id/bj_stand_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/player_hand_values"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="16dp"
+            android:layout_toLeftOf="@id/bj_hit_button"
+            android:text="stand"
+            />
 
-    </LinearLayout>
+        <Button
+            android:id="@+id/bj_insurance_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/player_hand_values"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_toRightOf="@id/bj_hit_button"
+            android:text="insurance"
+            android:textSize="12dp"
+            />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/bj_hit_button"
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal"
+            >
+
+            <Button
+                android:id="@+id/bj_split_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:onClick="onSplitClicked"
+                android:text="Split"
+                />
+
+            <Button
+                android:id="@+id/bj_double_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:onClick="onDoubleClicked"
+                android:text="double"
+                />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
     <Button
-
-        android:id="@+id/black_jack_play_again"
+        android:id="@+id/black_jack_start_game"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:onClick="onPlayAgainClicked"
-        android:text="Play Again"
-        android:layout_marginBottom="100dp"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="50dp"
+        android:onClick="onStartGameClicked"
+        android:text="Start Game"
+        android:visibility="visible"
+        tools:visibility="visible"
 
+        />
+
+    <TextView
+        android:id="@+id/bj_result_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bj_dealers_hand_layout"
+        android:layout_margin="8dp"
+        android:gravity="center"
+        android:padding="8dp"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        tools:text="Result"
         />
 
 </RelativeLayout>

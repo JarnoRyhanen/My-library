@@ -1,13 +1,14 @@
-package com.choicely.mylibrary;
+package com.choicely.mylibrary.otherTests;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageButton;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.choicely.mylibrary.R;
 
 public class SixthActivity extends AppCompatActivity {
 

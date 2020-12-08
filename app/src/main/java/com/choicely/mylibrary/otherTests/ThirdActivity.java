@@ -1,4 +1,4 @@
-package com.choicely.mylibrary;
+package com.choicely.mylibrary.otherTests;
 
 import android.content.Context;
 import android.hardware.Sensor;
@@ -10,6 +10,8 @@ import android.util.Log;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.choicely.mylibrary.R;
 
 public class ThirdActivity extends AppCompatActivity {
 

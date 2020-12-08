@@ -1,6 +1,5 @@
-package com.choicely.mylibrary;
+package com.choicely.mylibrary.otherTests;
 
-import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -8,6 +7,8 @@ import android.view.View;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.choicely.mylibrary.R;
 
 public class SecondaryActivity extends AppCompatActivity {
 

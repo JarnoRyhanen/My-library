@@ -27,26 +27,26 @@
             android:resource="@xml/anim"
             />
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".otherTests.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SecondaryActivity" />
+        <activity android:name=".otherTests.SecondaryActivity" />
         <activity
-            android:name=".ThirdActivity"
+            android:name=".otherTests.ThirdActivity"
             android:screenOrientation="portrait"
             />
-        <activity android:name=".FourthActivity" />
-        <activity android:name=".FifthActivity" />
-        <activity android:name=".SixthActivity" />
-        <activity android:name=".CardViewActivity" />
-        <activity android:name=".EightActivity" />
+        <activity android:name=".otherTests.FourthActivity" />
+        <activity android:name=".otherTests.FifthActivity" />
+        <activity android:name=".otherTests.SixthActivity" />
+        <activity android:name=".otherTests.CardViewActivity" />
+        <activity android:name=".otherTests.EightActivity" />
         <activity android:name=".ViewPagerActivity" />
         <activity android:name=".viewpagers.ViewPagerTest2" />
-        <activity android:name=".NotificationTestActivity" />
+        <activity android:name=".otherTests.NotificationTestActivity" />
         <activity android:name=".countcowntimer.CountDownTimerActivity" />
         <activity
             android:name=".citySearch.CitySearchActivity"

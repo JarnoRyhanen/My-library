@@ -1,4 +1,4 @@
-package com.choicely.mylibrary;
+package com.choicely.mylibrary.otherTests;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,6 +6,8 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.choicely.mylibrary.R;
+import com.choicely.mylibrary.ViewPagerActivity;
 import com.choicely.mylibrary.blackJack.BlackJackActivity;
 import com.choicely.mylibrary.citySearch.CitySearchActivity;
 import com.choicely.mylibrary.countcowntimer.CountDownTimerActivity;

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center">
 
-    <com.choicely.mylibrary.DrawView
+    <com.choicely.mylibrary.otherTests.DrawView
         android:id="@+id/fifth_activity_draw_view"
         android:layout_width="match_parent"
         android:layout_height="500dp"

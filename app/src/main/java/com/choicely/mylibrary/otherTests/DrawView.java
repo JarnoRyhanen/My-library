@@ -1,4 +1,4 @@
-package com.choicely.mylibrary;
+package com.choicely.mylibrary.otherTests;
 
 import android.annotation.TargetApi;
 import android.content.Context;

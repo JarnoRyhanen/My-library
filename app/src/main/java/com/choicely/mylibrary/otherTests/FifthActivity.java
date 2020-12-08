@@ -1,9 +1,12 @@
-package com.choicely.mylibrary;
+package com.choicely.mylibrary.otherTests;
 
 import android.graphics.Color;
 import android.os.Bundle;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.choicely.mylibrary.R;
 
 public class FifthActivity extends AppCompatActivity {
     private final static String TAG = "FifthActivity";
