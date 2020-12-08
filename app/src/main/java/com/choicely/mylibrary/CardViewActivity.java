@@ -96,6 +96,7 @@ public class CardViewActivity extends AppCompatActivity {
     View.OnTouchListener onCardViewTouch = this::onTouch;
     @SuppressLint("ClickableViewAccessibility")
     View.OnTouchListener onCardViewTouch2 = this::onTouch2;
+
     SeekBar.OnSeekBarChangeListener seekBarListener = new SeekBar.OnSeekBarChangeListener() {
         @Override
         public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
