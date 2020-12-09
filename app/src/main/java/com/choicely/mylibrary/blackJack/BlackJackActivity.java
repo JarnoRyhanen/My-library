@@ -3,7 +3,6 @@ package com.choicely.mylibrary.blackJack;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,24 +25,25 @@ public class BlackJackActivity extends AppCompatActivity {
 
     private Stack<Hand> handStack = new Stack<>();
     private List<PlayerHand> currentAndCompletedPlayerHands = new ArrayList<>();
-    private Button startGameButton;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.black_jack_activity);
-        startGameButton = findViewById(R.id.black_jack_start_game);
 
-        shoe = new Shoe(2);
+        shoe = new Shoe(4);
     }
 
     public void onStartGameClicked(View view) {
 
-        startGameButton.setVisibility(View.GONE);
+        currentAndCompletedPlayerHands.clear();
+        handStack.clear();
+
         Log.d(TAG, "onNewGameClick");
 
         DealerHand dealerHand = new DealerHand(shoe);
         dealerHand.findHandSpecificViewsFromView(findViewById(R.id.bj_dealers_hand_layout));
+        dealerHand.setOnHandPlayerListener(onHandPlayedListener);
         dealerHand.onDataChanged();
         handStack.add(dealerHand);
 
@@ -61,11 +61,14 @@ public class BlackJackActivity extends AppCompatActivity {
     private Hand.OnHandPlayedListener onHandPlayedListener = hand -> {
         if (hand instanceof DealerHand) {
             // game is over
+            Log.d(TAG, "Game over");
             handleResult((DealerHand) hand);
-        } else {
-            activateNextHand();
         }
 
+        else {
+            Log.d(TAG, "you pressed stand: ");
+            activateNextHand();
+        }
     };
 
     private void handleResult(DealerHand dealerHand) {
@@ -75,6 +78,7 @@ public class BlackJackActivity extends AppCompatActivity {
     }
 
     private void activateNextHand() {
+
         Hand nextHand = handStack.pop();
         if (nextHand instanceof PlayerHand) {
             currentAndCompletedPlayerHands.add((PlayerHand) nextHand);

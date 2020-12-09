@@ -13,16 +13,19 @@ import java.util.List;
 public abstract class Hand extends HandUI {
 
     private static final String TAG = "Hand";
-    private final Shoe shoe;
-    private final List<Card> cardList = new ArrayList<>();
     private OnHandPlayedListener onHandPlayedListener;
+
+    private final Shoe shoe;
+
+    protected final List<Card> cards = new ArrayList<>();
+
     protected boolean isActive;
 
     @Nullable
     private HandStatus status = null;
 
     public enum HandStatus {
-        LOSS, WIN, DRAW
+        WIN, LOSS, DRAW, NULL
     }
 
     public Hand(Shoe shoe) {
@@ -33,14 +36,6 @@ public abstract class Hand extends HandUI {
     }
 
     protected abstract void setStartingHand();
-
-    public int getHandValue() {
-        int value = 0;
-        for (Card card : cardList) {
-            value += card.getBlackJackCardValue();
-        }
-        return value;
-    }
 
     public boolean isActive() {
         return isActive;
@@ -53,7 +48,7 @@ public abstract class Hand extends HandUI {
     }
 
     public void addCard() {
-        cardList.add(shoe.getNextCard());
+        cards.add(shoe.getNextCard());
 
         onDataChanged();
     }
@@ -73,8 +68,33 @@ public abstract class Hand extends HandUI {
         }
     }
 
+    public List<Card> getCards() {
+        return cards;
+    }
+
+    public int getHandValue() {
+        int totalValue = 0;
+        for (Card c : cards) {
+            totalValue += c.getBlackJackCardValue();
+        }
+
+        return totalValue;
+    }
+
+    public void setResult() {
+        if (getHandValue() == 21) {
+            setStatus(HandStatus.WIN);
+        } else if (getHandValue() > 21) {
+            setStatus(HandStatus.LOSS);
+        } else {
+            setStatus(HandStatus.NULL);
+        }
+    }
+
     public void onDataChanged() {
         if (handValueText != null) {
+            setResult();
+            Log.d(TAG, "STATUS: " + getStatus());
             Log.d(TAG, "handValue: " + getHandValue());
             handValueText.setText(String.valueOf(getHandValue()));
         }

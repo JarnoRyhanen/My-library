@@ -1,28 +1,46 @@
 package com.choicely.mylibrary.blackJack.hand;
 
+import android.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
 
+import com.choicely.mylibrary.blackJack.PopUpAlert;
 import com.choicely.mylibrary.blackJack.cardDataInterfaces.Shoe;
 
 public class PlayerHand extends Hand {
 
-    private final static String TAG ="PlayerHand";
+
+    private final static String TAG = "PlayerHand";
+
+    private AlertDialog.Builder builder;
 
     public PlayerHand(Shoe shoe) {
         super(shoe);
     }
 
+    @Override
     protected void setStartingHand() {
         addCard();
         addCard();
     }
 
-    public void compareToDealerHand(Hand hand) {
+    public void compareToDealerHand(DealerHand dealerHand) {
+
+        if (getHandValue() < dealerHand.getHandValue()) {
+            popUpAlert.alertPopUp(handValueText, "Dealer took this one", "Dealer won, You lost");
+        }
+        else if (getHandValue() > dealerHand.getHandValue()) {
+            popUpAlert.alertPopUp(handValueText, "Congratulations", "You won");
+        }
+        else  {
+            popUpAlert.alertPopUp(handValueText, "Draw", "You drew");
+        }
 
     }
 
-    public void setActive(Boolean active) {
+
+    @Override
+    public void setActive(boolean active) {
         super.setActive(active);
 
         if (active) {
@@ -43,15 +61,30 @@ public class PlayerHand extends Hand {
         standButton.setOnClickListener(this::onStandClicked);
     }
 
+    private PopUpAlert popUpAlert = new PopUpAlert();
 
     private void onHitClicked(View view) {
-        if(getHandValue() <= 21){
 
+        if (getHandValue() <= 21) {
+            addCard();
         }
-        addCard();
+        switch (getStatus()) {
+            case WIN:
+                popUpAlert.alertPopUp(handValueText, "Congratulations", "You won");
+                break;
+            case LOSS:
+                popUpAlert.alertPopUp(handValueText, "Better luck next time", "You lost");
+                break;
+            case NULL:
+                break;
+        }
+
+        Log.d(TAG, "onHitClicked: hand value:" + getHandValue());
     }
 
+
     private void onStandClicked(View view) {
+
         onHandFinished();
     }
 
@@ -63,7 +96,8 @@ public class PlayerHand extends Hand {
         Log.d(TAG, "onDoubleClicked: ");
     }
 
-    public void onInsuranceClicked(View view) {
+
+    private void onInsuranceClicked(View view) {
         Log.d(TAG, "onInsuranceClicked: ");
     }
 
