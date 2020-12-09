@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+
+    <LinearLayout
+        android:id="@+id/black_jack_dealer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dealer's score: "
+                android:textSize="20sp"
+                />
+
+            <TextView
+                android:id="@+id/black_jack_dealer_card_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="00"
+                android:textSize="20sp"
+                />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <TextView
+                android:id="@+id/black_jack_dealer_card_1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="00"
+                android:textSize="40dp"
+                />
+
+            <TextView
+                android:id="@+id/black_jack_dealer_card_2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="00"
+                android:textSize="40dp"
+
+                />
+
+            <TextView
+                android:id="@+id/black_jack_dealer_card_3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="00"
+                android:textSize="40dp"
+
+                />
+
+            <TextView
+                android:id="@+id/black_jack_dealer_card_4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="00"
+                android:textSize="40dp"
+
+                />
+
+            <TextView
+                android:id="@+id/black_jack_dealer_card_5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="00"
+                android:textSize="40dp"
+                />
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@+id/black_jack_dealer"
+        android:background="@color/black"
+        />
+
+    <LinearLayout
+        android:id="@+id/black_jack_player"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/black_jack_dealer"
+        android:layout_marginTop="40dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Player's score: "
+                android:textSize="20sp"
+                />
+
+            <TextView
+                android:id="@+id/black_jack_player_card_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="00"
+                android:textSize="20sp"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            >
+
+            <TextView
+                android:id="@+id/black_jack_player_card_1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="00"
+                android:textSize="40dp"
+                />
+
+            <TextView
+                android:id="@+id/black_jack_player_card_2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="00"
+                android:textSize="40dp"
+
+                />
+
+            <TextView
+                android:id="@+id/black_jack_player_card_3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="00"
+                android:textSize="40dp"
+
+                />
+
+            <TextView
+                android:id="@+id/black_jack_player_card_4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="00"
+                android:textSize="40dp"
+
+                />
+
+            <TextView
+                android:id="@+id/black_jack_player_card_5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="00"
+                android:textSize="40dp"
+                />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@+id/black_jack_player"
+        android:background="@color/black"
+        />
+
+    <LinearLayout
+        android:id="@+id/black_jack_buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        >
+
+
+        <Button
+            android:id="@+id/black_jack_start_game"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:onClick="onStartGameClicked"
+            android:text="Start Game"
+
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            >
+
+
+            <Button
+                android:id="@+id/black_jack_hit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onHitClicked"
+                android:text="Hit"
+                />
+
+            <Button
+                android:id="@+id/black_jack_surrender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:onClick="onSurrenderClicked"
+                android:text="Surrender"
+                />
+
+
+            <Button
+                android:id="@+id/black_jack_stand"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onStandClicked"
+                android:text="Stand"
+                />
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/black_jack_play_again"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/black_jack_buttons"
+        android:layout_centerHorizontal="true"
+        android:onClick="onPlayAgainClicked"
+        android:text="Play Again"
+
+        />
+
+
+</RelativeLayout>

@@ -107,6 +107,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginTop="8dp"
             android:layout_toRightOf="@id/bj_hit_button"
+            android:onClick="onInsuranceClicked"
             android:text="insurance"
             android:textSize="12dp"
             />

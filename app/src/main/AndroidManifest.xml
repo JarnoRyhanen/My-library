@@ -58,6 +58,8 @@
         <activity android:name=".imageGallery.ImageGalleryActivity" />
         <activity android:name=".imageGallery.EditImageActivity"/>
         <activity android:name=".blackJack.BlackJackActivity"/>
+        <activity android:name=".originalBlackJack.OriginalBlackJackActivity"/>
+
 
         <provider
             android:name="androidx.core.content.FileProvider"

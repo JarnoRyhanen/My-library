@@ -129,6 +129,12 @@
             android:text="Black Jack"
             />
 
+        <Button
+            android:id="@+id/original_black_jack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Original \nBlack Jack"
+            />
     </LinearLayout>
 
 </ScrollView>

@@ -12,6 +12,7 @@ import com.choicely.mylibrary.blackJack.BlackJackActivity;
 import com.choicely.mylibrary.citySearch.CitySearchActivity;
 import com.choicely.mylibrary.countcowntimer.CountDownTimerActivity;
 import com.choicely.mylibrary.imageGallery.ImageGalleryActivity;
+import com.choicely.mylibrary.originalBlackJack.OriginalBlackJackActivity;
 import com.choicely.mylibrary.receiptSavingApp.ReceiptSavingAppActivity;
 import com.choicely.mylibrary.stringGenerator.StringGeneratorActivity;
 import com.choicely.mylibrary.viewpagers.ViewPagerTest2;
@@ -34,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private Button saveReceipts;
     private Button imageGallery;
     private Button blackJack;
-
+    private Button originalBlackJack;
     private static final String TAG = "MainActivity";
 
     @Override
@@ -60,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         saveReceipts = findViewById(R.id.receipt_saving_app);
         imageGallery = findViewById(R.id.image_gallery);
         blackJack = findViewById(R.id.black_jack);
-
+        originalBlackJack = findViewById(R.id.original_black_jack);
 
         rotatePicBtn.setOnClickListener(v -> {
             Intent intent = new Intent(this, SecondaryActivity.class);
@@ -126,6 +127,10 @@ public class MainActivity extends AppCompatActivity {
         });
         blackJack.setOnClickListener(v -> {
             Intent intent = new Intent(this, BlackJackActivity.class);
+            startActivity(intent);
+        });
+        originalBlackJack.setOnClickListener(v -> {
+            Intent intent = new Intent(this, OriginalBlackJackActivity.class);
             startActivity(intent);
         });
     }
