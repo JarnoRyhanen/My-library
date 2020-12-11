@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
 
+import com.choicely.mylibrary.blackJack.Card;
 import com.choicely.mylibrary.blackJack.PopUpAlert;
 import com.choicely.mylibrary.blackJack.cardDataInterfaces.Shoe;
 
@@ -24,18 +25,33 @@ public class PlayerHand extends Hand {
         addCard();
     }
 
+    private void setStatus(DealerHand dealerHand) {
+        if (getHandValue() < dealerHand.getHandValue()
+                && dealerHand.getHandValue() < 21) {
+            setStatus(HandStatus.LOSS);
+        } else if (getHandValue() > dealerHand.getHandValue()) {
+            setStatus(HandStatus.WIN);
+        } else if (getHandValue() == dealerHand.getHandValue()) {
+            setStatus(HandStatus.DRAW);
+        }
+    }
+
     public void compareToDealerHand(DealerHand dealerHand) {
+        setStatus(dealerHand);
 
-        if (getHandValue() < dealerHand.getHandValue()) {
-            popUpAlert.alertPopUp(handValueText, "Dealer took this one", "Dealer won, You lost");
+        switch (getStatus()) {
+            case WIN:
+                popUpAlert.alertPopUp(handValueText, "Congratulations", "You won");
+                break;
+            case LOSS:
+                popUpAlert.alertPopUp(handValueText, "Dealer took this one", "Dealer won, You lost");
+                break;
+            case DRAW:
+                popUpAlert.alertPopUp(handValueText, "Draw", "You drew");
+                break;
+            case NULL:
+                break;
         }
-        else if (getHandValue() > dealerHand.getHandValue()) {
-            popUpAlert.alertPopUp(handValueText, "Congratulations", "You won");
-        }
-        else  {
-            popUpAlert.alertPopUp(handValueText, "Draw", "You drew");
-        }
-
     }
 
 
@@ -61,6 +77,12 @@ public class PlayerHand extends Hand {
         standButton.setOnClickListener(this::onStandClicked);
     }
 
+    private void getCardValues() {
+        for (Card c : cards) {
+            Log.d(TAG, "Player's Cards: " + c.getBlackJackCardValue());
+        }
+    }
+
     private PopUpAlert popUpAlert = new PopUpAlert();
 
     private void onHitClicked(View view) {
@@ -68,6 +90,9 @@ public class PlayerHand extends Hand {
         if (getHandValue() <= 21) {
             addCard();
         }
+
+        getCardValues();
+
         switch (getStatus()) {
             case WIN:
                 popUpAlert.alertPopUp(handValueText, "Congratulations", "You won");
@@ -79,7 +104,6 @@ public class PlayerHand extends Hand {
                 break;
         }
 
-        Log.d(TAG, "onHitClicked: hand value:" + getHandValue());
     }
 
 

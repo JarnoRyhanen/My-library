@@ -151,21 +151,8 @@
         android:onClick="onStartGameClicked"
         android:text="Start \nGame"
         android:visibility="visible"
-
         tools:visibility="visible"
         />
 
-    <TextView
-        android:id="@+id/bj_result_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/bj_dealers_hand_layout"
-        android:layout_margin="8dp"
-        android:gravity="center"
-        android:padding="8dp"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        tools:text="Result"
-        />
 
 </RelativeLayout>

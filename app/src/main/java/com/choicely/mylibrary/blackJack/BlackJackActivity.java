@@ -32,6 +32,7 @@ public class BlackJackActivity extends AppCompatActivity {
         setContentView(R.layout.black_jack_activity);
 
         shoe = new Shoe(4);
+
     }
 
     public void onStartGameClicked(View view) {
@@ -56,6 +57,8 @@ public class BlackJackActivity extends AppCompatActivity {
         handStack.add(playerMainHand);
 
         activateNextHand();
+
+
     }
 
     private Hand.OnHandPlayedListener onHandPlayedListener = hand -> {
@@ -87,6 +90,8 @@ public class BlackJackActivity extends AppCompatActivity {
     }
 
     private void updateContent() {
+
+
 
     }
 

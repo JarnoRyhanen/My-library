@@ -1,7 +1,9 @@
 package com.choicely.mylibrary.blackJack.hand;
 
 import android.app.AlertDialog;
+import android.util.Log;
 
+import com.choicely.mylibrary.blackJack.Card;
 import com.choicely.mylibrary.blackJack.PopUpAlert;
 import com.choicely.mylibrary.blackJack.cardDataInterfaces.Shoe;
 
@@ -41,9 +43,16 @@ public class DealerHand extends Hand {
         }
     }
 
+    private void getCardValues(){
+        for (Card c : cards) {
+            Log.d(TAG, "Dealer's Cards: " + c.getBlackJackCardValue());
+        }
+    }
+
     private void play() {
         if(getHandValue() < 17){
             addCard();
+            getCardValues();
             handValueText.postDelayed(this::play, 1000);
         }else {
             onHandFinished();

@@ -54,6 +54,8 @@ public class ReceiptSavingAppActivity extends AppCompatActivity {
 
         openCameraBtn = findViewById(R.id.receipt_saving_app_activity_open_camera);
         textView = findViewById(R.id.receipt_saving_app_activity_text_view);
+
+
         recyclerView = findViewById(R.id.receipt_saving_app_activity_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new PictureAdapter(this);

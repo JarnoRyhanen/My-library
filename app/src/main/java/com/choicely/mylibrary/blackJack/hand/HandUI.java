@@ -1,13 +1,16 @@
 package com.choicely.mylibrary.blackJack.hand;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.choicely.mylibrary.R;
+import com.choicely.mylibrary.blackJack.CardValueAdapter;
 
 public class HandUI {
 
@@ -27,7 +30,9 @@ public class HandUI {
     protected TextView handValueText;
     protected RecyclerView cardRecycler;
     private View splitLayout;
+    protected CardValueAdapter adapter;
 
+    private final static String TAG = "HandUI";
 
     public void findButtonsFromView(View v) {
 
@@ -41,11 +46,19 @@ public class HandUI {
 
     public void findHandSpecificViewsFromView(View v) {
         handValueText = v.findViewById(R.id.hand_size_text_view);
+
         cardRecycler = v.findViewById(R.id.hand_card_recycler_view);
+        cardRecycler.setLayoutManager(new LinearLayoutManager(v.getContext()));
+        adapter = new CardValueAdapter(v.getContext());
+        cardRecycler.setAdapter(adapter);
+        Log.d(TAG, "findHandSpecificViewsFromView: adapter attached");
     }
 
     public void setSplitLayout(View v) {
         splitLayout = v;
     }
+
+
+
 
 }

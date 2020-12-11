@@ -17,7 +17,7 @@ public abstract class Hand extends HandUI {
 
     private final Shoe shoe;
 
-    protected final List<Card> cards = new ArrayList<>();
+    final List<Card> cards = new ArrayList<>();
 
     protected boolean isActive;
 
@@ -48,9 +48,11 @@ public abstract class Hand extends HandUI {
     }
 
     public void addCard() {
-        cards.add(shoe.getNextCard());
+        Card card = shoe.getNextCard();
+        cards.add(card);
 
         onDataChanged();
+
     }
 
     @Nullable
@@ -77,7 +79,7 @@ public abstract class Hand extends HandUI {
         for (Card c : cards) {
             totalValue += c.getBlackJackCardValue();
         }
-
+        updateContent();
         return totalValue;
     }
 
@@ -111,5 +113,13 @@ public abstract class Hand extends HandUI {
 
     }
 
+    public void updateContent() {
+        adapter.clearList();
 
+        for (int i = 0; i < cards.size(); i++) {
+            adapter.add(cards.get(i));
+        }
+
+        adapter.notifyDataSetChanged();
+    }
 }
