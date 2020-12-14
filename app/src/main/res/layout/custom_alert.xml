@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <SeekBar
+        android:id="@+id/black_jack_betting_seek_bar"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_below="@id/bj_dealers_hand_layout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:max="40"
+        />
+
+    <TextView
+        android:id="@+id/black_jack_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        />
+
+</LinearLayout>

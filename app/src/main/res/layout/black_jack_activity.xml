@@ -66,6 +66,7 @@
                 layout="@layout/player_hand_values"
                 android:layout_width="160dp"
                 android:layout_height="160dp"
+
                 />
 
             <include
@@ -73,7 +74,6 @@
                 layout="@layout/player_hand_values"
                 android:layout_width="160dp"
                 android:layout_height="160dp"
-                android:visibility="gone"
                 tools:visibility="visible"
                 />
 
@@ -144,9 +144,9 @@
 
     <Button
         android:id="@+id/black_jack_start_game"
-        android:layout_alignParentEnd="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
         android:layout_marginBottom="50dp"
         android:onClick="onStartGameClicked"
         android:text="Start \nGame"
@@ -154,5 +154,28 @@
         tools:visibility="visible"
         />
 
+    <TextView
+        android:id="@+id/black_jack_activity_bet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bj_dealers_hand_layout"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        tools:text="3444 €"
+
+        />
+
+    <TextView
+        android:id="@+id/black_jack_activity_balance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        tools:text="3444 €"
+        android:padding="16dp"
+        android:text="1000 €"
+
+        />
 
 </RelativeLayout>

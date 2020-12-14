@@ -10,7 +10,7 @@ public class LiikenneValot {
 
     private StatusChangeListener statusChangeListener;
 
-    private int pos;
+    private int position;
 
     public interface StatusChangeListener {
         void onStatusChanged();
@@ -18,17 +18,15 @@ public class LiikenneValot {
 
     public void updateStatus() {
 
-
-
         for (int i = 0; i < lights.size(); i++) {
             if (lights.get(i).isActive()) {
                 lights.get(i).setActive(false);
-                if (i + 1 >= lights.size()) {
+                if (i + 1 == lights.size()) {
                     lights.get(0).setActive(true);
                 } else {
                     lights.get(i + 1).setActive(true);
                 }
-                pos = i;
+                position = i;
                 break;
             }
         }
@@ -48,7 +46,7 @@ public class LiikenneValot {
     }
 
     public int getPos() {
-        return pos;
+        return position;
     }
 
 

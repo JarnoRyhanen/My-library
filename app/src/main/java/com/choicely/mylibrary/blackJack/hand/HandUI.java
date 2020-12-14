@@ -29,7 +29,7 @@ public class HandUI {
 
     protected TextView handValueText;
     protected RecyclerView cardRecycler;
-    private View splitLayout;
+    protected View splitLayout;
     protected CardValueAdapter adapter;
 
     private final static String TAG = "HandUI";
@@ -56,6 +56,9 @@ public class HandUI {
 
     public void setSplitLayout(View v) {
         splitLayout = v;
+
+
+
     }
 
 

@@ -36,8 +36,13 @@ public class SulkeisetActivity extends AppCompatActivity {
         linearLayout = findViewById(R.id.linearLayout_sulkeiset);
 
         addColorsToList();
+        liikennevalo.setOnStatusChangeListener(new LiikenneValot.StatusChangeListener() {
+            @Override
+            public void onStatusChanged() {
 
-        liikennevalo.setOnStatusChangeListener(() -> Toast.makeText(SulkeisetActivity.this, "status changed", Toast.LENGTH_SHORT).show());
+            }
+        });
+        liikennevalo.setOnStatusChangeListener(() -> Toast.makeText(SulkeisetActivity.this, "", Toast.LENGTH_SHORT).show());
 
         addNewLamp();
         addNewViews();
@@ -87,6 +92,7 @@ public class SulkeisetActivity extends AppCompatActivity {
         liikennevalo.updateStatus();
 
         for (int i = liikennevalo.getPos(); i < liikennevalo.lights.size(); i++) {
+            setColorsToWhite();
             views.get(i).setBackgroundColor(colors.get(i));
             break;
         }
@@ -99,8 +105,9 @@ public class SulkeisetActivity extends AppCompatActivity {
     }
 
     public void onButtonClicked(View view) {
-        loop();
         loopButton.setClickable(false);
+        loop();
+
     }
 
     private void loop() {

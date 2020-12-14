@@ -24,9 +24,11 @@ public abstract class Hand extends HandUI {
     @Nullable
     private HandStatus status = null;
 
+
     public enum HandStatus {
         WIN, LOSS, DRAW, NULL
     }
+
 
     public Hand(Shoe shoe) {
         this.shoe = shoe;
@@ -72,6 +74,16 @@ public abstract class Hand extends HandUI {
 
     public List<Card> getCards() {
         return cards;
+    }
+
+    public void getCardValues(PlayerHand playerHand){
+        if(playerHand.getCards().get(0).getBlackJackCardValue() == playerHand.getCards().get(1).getBlackJackCardValue()){
+            Log.d(TAG, "getCardValues: card 1: " + playerHand.getCards().get(0).getBlackJackCardValue());
+            Log.d(TAG, "getCardValues: card 2: " + playerHand.getCards().get(1).getBlackJackCardValue());
+
+            playerHand.setSplitAvailable();
+        }
+
     }
 
     public int getHandValue() {

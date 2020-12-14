@@ -17,6 +17,7 @@
         android:textColor="@color/black"
         android:textSize="60sp"
         tools:text="20"
+        android:onClick="onHandValueClick"
         />
 
     <androidx.recyclerview.widget.RecyclerView
