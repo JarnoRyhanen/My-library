@@ -147,6 +147,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
+        android:layout_margin="8dp"
         android:layout_marginBottom="50dp"
         android:onClick="onStartGameClicked"
         android:text="Start \nGame"
@@ -163,19 +164,38 @@
         android:textColor="@color/black"
         android:textSize="30sp"
         tools:text="3444 €"
-
         />
-
+    <TextView
+        android:id="@+id/black_jack_activity_insurance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/black_jack_activity_bet"
+        android:layout_marginTop="8dp"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        tools:visibility="visible"
+        tools:text="3444 €"
+        />
     <TextView
         android:id="@+id/black_jack_activity_balance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:text="1000 €"
         android:textColor="@color/black"
         android:textSize="30sp"
         tools:text="3444 €"
-        android:padding="16dp"
-        android:text="1000 €"
-
         />
+    <Button
+        android:id="@+id/black_jack_activity_rules_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:layout_below="@id/black_jack_activity_balance"
+        android:onClick="onRulesClicked"
+        android:text="Rules"
+        />
+
 
 </RelativeLayout>

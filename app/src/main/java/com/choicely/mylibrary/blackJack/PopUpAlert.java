@@ -11,6 +11,7 @@ import com.choicely.mylibrary.R;
 public class PopUpAlert {
 
     private final static String TAG = "PopUpAlert";
+    private BlackJackActivity blackJackActivity = new BlackJackActivity();
 
     public void alertPopUp(View view, String message, String title) {
         AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
@@ -19,6 +20,11 @@ public class PopUpAlert {
         AlertDialog alert = builder.create();
         alert.setTitle(title);
         alert.show();
+    }
+
+    public void rulesPopUp(View view) {
+
+
     }
 
     public void popUpBetting(View view) {
@@ -49,16 +55,21 @@ public class PopUpAlert {
         builder.setPositiveButton("Bet", (dialogInterface, i) -> {
 
             Log.d(TAG, "popUpBetting: " + seekBar.getProgress() * 25);
+            blackJackActivity.beginGame();
             onBetAddedListener.onBetAdded(seekBar.getProgress() * 25);
         });
         final AlertDialog dialog = builder.show();
-
     }
+
 
     private BetAddedListener onBetAddedListener;
 
     public void setBedAddedListener(BetAddedListener listener) {
         this.onBetAddedListener = listener;
+    }
+
+    public void setBlackJackActivity(BlackJackActivity blackJackActivity) {
+        this.blackJackActivity = blackJackActivity;
     }
 
     public interface BetAddedListener {

@@ -18,7 +18,6 @@ public abstract class Hand extends HandUI {
     private final Shoe shoe;
 
     final List<Card> cards = new ArrayList<>();
-
     protected boolean isActive;
 
     @Nullable
@@ -26,7 +25,7 @@ public abstract class Hand extends HandUI {
 
 
     public enum HandStatus {
-        WIN, LOSS, DRAW, NULL
+        WIN, LOSS, DRAW, NULL, BLACKJACK
     }
 
 
@@ -54,7 +53,6 @@ public abstract class Hand extends HandUI {
         cards.add(card);
 
         onDataChanged();
-
     }
 
     @Nullable
@@ -76,8 +74,8 @@ public abstract class Hand extends HandUI {
         return cards;
     }
 
-    public void getCardValues(PlayerHand playerHand){
-        if(playerHand.getCards().get(0).getBlackJackCardValue() == playerHand.getCards().get(1).getBlackJackCardValue()){
+    public void getCardValues(PlayerHand playerHand) {
+        if (playerHand.getCards().get(0).getBlackJackCardValue() == playerHand.getCards().get(1).getBlackJackCardValue()) {
             Log.d(TAG, "getCardValues: card 1: " + playerHand.getCards().get(0).getBlackJackCardValue());
             Log.d(TAG, "getCardValues: card 2: " + playerHand.getCards().get(1).getBlackJackCardValue());
 
@@ -89,14 +87,21 @@ public abstract class Hand extends HandUI {
     public int getHandValue() {
         int totalValue = 0;
         for (Card c : cards) {
-            totalValue += c.getBlackJackCardValue();
+
+            if (totalValue < 11 && c.getBlackJackCardValue() == 1) {
+                totalValue += 11;
+            } else {
+                totalValue += c.getBlackJackCardValue();
+            }
         }
         updateContent();
         return totalValue;
     }
 
     public void setResult() {
-        if (getHandValue() == 21) {
+        if (getHandValue() == 21 && getCards().size() == 2) {
+            setStatus(HandStatus.BLACKJACK);
+        } else if (getHandValue() == 21) {
             setStatus(HandStatus.WIN);
         } else if (getHandValue() > 21) {
             setStatus(HandStatus.LOSS);
@@ -107,6 +112,7 @@ public abstract class Hand extends HandUI {
 
     public void onDataChanged() {
         if (handValueText != null) {
+
             setResult();
             Log.d(TAG, "STATUS: " + getStatus());
             Log.d(TAG, "handValue: " + getHandValue());

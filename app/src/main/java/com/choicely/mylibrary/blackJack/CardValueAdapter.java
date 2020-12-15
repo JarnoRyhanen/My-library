@@ -35,9 +35,7 @@ public class CardValueAdapter extends RecyclerView.Adapter<CardValueAdapter.Card
     public void onBindViewHolder(@NonNull CardValueViewHolder holder, int position) {
 
         Card cardPos = cardValues.get(position);
-//        Log.d(TAG, String.format("%s %d", cardPos.getSuite(), cardPos.getBlackJackCardValue()));
-//        getItemCount();
-        holder.card.setText(String.format("%s %d", cardPos.getSuite(), cardPos.getBlackJackCardValue()));
+        holder.card.setText(String.format("%s %s", cardPos.getSuite(), cardPos.getNumberValue()));
 
     }
 

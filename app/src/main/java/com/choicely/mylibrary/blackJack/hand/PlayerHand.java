@@ -14,6 +14,8 @@ public class PlayerHand extends Hand {
     private final static String TAG = "PlayerHand";
     private BetAndBalance betAndBalance = new BetAndBalance();
     private BlackJackActivity blackJackActivity = new BlackJackActivity();
+    private DealerHand dealerHand;
+
 
     public PlayerHand(Shoe shoe) {
         super(shoe);
@@ -71,15 +73,13 @@ public class PlayerHand extends Hand {
                 insuranceButton == null || standButton == null) {
             return;
         }
-        enableAllButtons();
 
         splitButton.setEnabled(false);
         doubleButton.setEnabled(false);
         insuranceButton.setEnabled(false);
 
-        if (getHandValue() <= 11 && getHandValue() >= 9) {
-            doubleButton.setEnabled(true);
-        }
+        checkDoubleAvailability();
+        checkInsuranceAvailability();
 
         hitButton.setOnClickListener(this::onHitClicked);
         doubleButton.setOnClickListener(this::onDoubleClicked);
@@ -87,6 +87,7 @@ public class PlayerHand extends Hand {
         insuranceButton.setOnClickListener(this::onInsuranceClicked);
         standButton.setOnClickListener(this::onStandClicked);
     }
+
 
     private PopUpAlert popUpAlert = new PopUpAlert();
 
@@ -120,6 +121,9 @@ public class PlayerHand extends Hand {
 
     private void onInsuranceClicked(View view) {
         Log.d(TAG, "onInsuranceClicked: ");
+        blackJackActivity.insurance();
+        dealerHand.isInsuranceActive = true;
+        insuranceButton.setEnabled(false);
 
     }
 
@@ -131,13 +135,6 @@ public class PlayerHand extends Hand {
         splitLayout.setVisibility(View.GONE);
     }
 
-    public void setBetAndBalance(BetAndBalance betAndBalance) {
-        this.betAndBalance = betAndBalance;
-    }
-
-    public void setBlackJackActivity(BlackJackActivity blackJackActivity) {
-        this.blackJackActivity = blackJackActivity;
-    }
 
     private boolean checkGameStatus() {
         switch (getStatus()) {
@@ -155,9 +152,29 @@ public class PlayerHand extends Hand {
         return false;
     }
 
-//    public void setDealerHand(DealerHand dealerHand) {
-//        this.dealerHand = dealerHand.getDealerHand();
-//    }
+    private void checkDoubleAvailability() {
+        if (getHandValue() <= 11 && getHandValue() >= 9) {
+            doubleButton.setEnabled(true);
+        }
+    }
+
+    private void checkInsuranceAvailability() {
+        if (dealerHand.getHandValue() == 11) {
+            insuranceButton.setEnabled(true);
+        }
+    }
+
+    public void setBetAndBalance(BetAndBalance betAndBalance) {
+        this.betAndBalance = betAndBalance;
+    }
+
+    public void setBlackJackActivity(BlackJackActivity blackJackActivity) {
+        this.blackJackActivity = blackJackActivity;
+    }
+
+    public void setDealerHand(DealerHand dealerHand) {
+        this.dealerHand = dealerHand;
+    }
 
     private void enableAllButtons() {
         doubleButton.setEnabled(true);

@@ -12,7 +12,7 @@ public class Deck {
 
     public Deck() {
         for (CardSuite.Suite suite : CardSuite.Suite.values()) {
-            for (int i = 2; i < 14; i++) {
+            for (int i = 2; i <= 14; i++) {
                 deck.add(new Card(i, suite));
             }
         }

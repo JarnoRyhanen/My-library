@@ -5,6 +5,7 @@ public class BetAndBalance {
     private int balance = 1000;
     private int yourBet;
     private int victorySum;
+    private int insurance;
 
     public int getVictorySum() {
         return victorySum;
@@ -33,12 +34,20 @@ public class BetAndBalance {
         this.balance = balance;
     }
 
+    public int getInsurance() {
+        return insurance;
+    }
+
+    public void setInsurance(int insurance) {
+        this.insurance = insurance;
+    }
 
     private BalanceUpdatedListener onBalanceUpdatedListener;
 
     public void setOnBalanceUpdatedListener(BalanceUpdatedListener listener) {
         this.onBalanceUpdatedListener = listener;
     }
+
 
     public interface BalanceUpdatedListener {
         void onBalanceUpdated(int betWon);
