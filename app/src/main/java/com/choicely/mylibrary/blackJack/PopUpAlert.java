@@ -3,6 +3,7 @@ package com.choicely.mylibrary.blackJack;
 import android.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -24,7 +25,20 @@ public class PopUpAlert {
 
     public void rulesPopUp(View view) {
 
+//        TextView title = view.findViewById(R.id.black_jack_rules_title);
+        TextView body = view.findViewById(R.id.black_jack_rules_body);
+//        String string = view.getResources().getString(R.string.rules_body);
+        CharSequence s2 = view.getResources().getText(R.string.rules_body);
+        body.setText(s2);
 
+        AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+        builder.setView(view);
+
+        builder.setPositiveButton("Ok", (dialogInterface, i) -> {
+            ViewGroup parent = (ViewGroup) view.getParent();
+            parent.removeView(view);
+        });
+        final AlertDialog dialog = builder.show();
     }
 
     public void popUpBetting(View view) {
@@ -52,11 +66,14 @@ public class PopUpAlert {
             }
 
         });
+
         builder.setPositiveButton("Bet", (dialogInterface, i) -> {
 
             Log.d(TAG, "popUpBetting: " + seekBar.getProgress() * 25);
             blackJackActivity.beginGame();
             onBetAddedListener.onBetAdded(seekBar.getProgress() * 25);
+            ViewGroup parent = (ViewGroup) view.getParent();
+            parent.removeView(view);
         });
         final AlertDialog dialog = builder.show();
     }

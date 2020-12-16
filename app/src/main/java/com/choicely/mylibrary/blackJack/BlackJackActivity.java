@@ -3,7 +3,6 @@ package com.choicely.mylibrary.blackJack;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -36,10 +35,9 @@ public class BlackJackActivity extends AppCompatActivity {
     private final List<PlayerHand> currentAndCompletedPlayerHands = new ArrayList<>();
 
     private View alertView;
-
+    private View rulesView;
 
     private final PopUpAlert.BetAddedListener listener = bet -> addBet(bet);
-
     private final BetAndBalance.BalanceUpdatedListener balanceUpdatedListener = betWon -> updateBalance(betWon);
 
     private int balance;
@@ -57,13 +55,13 @@ public class BlackJackActivity extends AppCompatActivity {
         shoe = new Shoe(3);
 
         alertView = getLayoutInflater().inflate(R.layout.custom_alert, null);
+        rulesView = getLayoutInflater().inflate(R.layout.black_jack_rules_layout, null);
     }
 
     public void addBet(int bet) {
         betTextView.setText(String.format("%d €", bet));
         updateBalance(-bet);
         betAndBalance.setYourBet(bet);
-        removePopUpView();
         Log.d(TAG, "addBet: getbet: " + betAndBalance.getYourBet());
     }
 
@@ -167,13 +165,16 @@ public class BlackJackActivity extends AppCompatActivity {
 
     }
 
-    private void removePopUpView() {
-        ViewGroup parent = (ViewGroup) alertView.getParent();
-        parent.removeView(alertView);
-    }
+
 
 
     public void onRulesClicked(View view) {
+
+        PopUpAlert popUpAlert = new PopUpAlert();
+
+        popUpAlert.setBlackJackActivity(BlackJackActivity.this);
+        popUpAlert.rulesPopUp(rulesView);
+
 
     }
 }
