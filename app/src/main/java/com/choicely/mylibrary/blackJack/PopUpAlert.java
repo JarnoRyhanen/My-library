@@ -25,9 +25,7 @@ public class PopUpAlert {
 
     public void rulesPopUp(View view) {
 
-//        TextView title = view.findViewById(R.id.black_jack_rules_title);
         TextView body = view.findViewById(R.id.black_jack_rules_body);
-//        String string = view.getResources().getString(R.string.rules_body);
         CharSequence s2 = view.getResources().getText(R.string.rules_body);
         body.setText(s2);
 

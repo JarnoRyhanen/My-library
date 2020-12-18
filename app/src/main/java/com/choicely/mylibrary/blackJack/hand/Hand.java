@@ -13,21 +13,24 @@ import java.util.List;
 public abstract class Hand extends HandUI {
 
     private static final String TAG = "Hand";
-    private OnHandPlayedListener onHandPlayedListener;
 
-    private final Shoe shoe;
-
+    protected Shoe shoe;
+    protected Card splitCard;
     final List<Card> cards = new ArrayList<>();
+    final List<Card> splitHandCards = new ArrayList<>();
     protected boolean isActive;
 
     @Nullable
     private HandStatus status = null;
 
-
     public enum HandStatus {
         WIN, LOSS, DRAW, NULL, BLACKJACK
     }
 
+    public Hand(Card splitCard, Shoe shoe) {
+        this.splitCard = splitCard;
+        this.shoe = shoe;
+    }
 
     public Hand(Shoe shoe) {
         this.shoe = shoe;
@@ -35,6 +38,7 @@ public abstract class Hand extends HandUI {
         setStartingHand();
         onDataChanged();
     }
+
 
     protected abstract void setStartingHand();
 
@@ -55,6 +59,12 @@ public abstract class Hand extends HandUI {
         onDataChanged();
     }
 
+    public void addSplitCard(Card card) {
+        splitHandCards.add(card);
+        onDataChangedSplitHand();
+    }
+
+
     @Nullable
     public HandStatus getStatus() {
         return status;
@@ -64,25 +74,35 @@ public abstract class Hand extends HandUI {
         this.status = status;
     }
 
-    protected void onHandFinished() {
-        if (onHandPlayedListener != null) {
-            onHandPlayedListener.onHandPlayed(this);
-        }
-    }
 
     public List<Card> getCards() {
         return cards;
     }
 
     public void getCardValues(PlayerHand playerHand) {
-        if (playerHand.getCards().get(0).getBlackJackCardValue() == playerHand.getCards().get(1).getBlackJackCardValue()) {
-            Log.d(TAG, "getCardValues: card 1: " + playerHand.getCards().get(0).getBlackJackCardValue());
-            Log.d(TAG, "getCardValues: card 2: " + playerHand.getCards().get(1).getBlackJackCardValue());
+        if (playerHand.getCards().size() == 2) {
+            if (playerHand.getCards().get(0).getBlackJackCardValue() == playerHand.getCards().get(1).getBlackJackCardValue()) {
+                Log.d(TAG, "getCardValues: card 1: " + playerHand.getCards().get(0).getBlackJackCardValue());
+                Log.d(TAG, "getCardValues: card 2: " + playerHand.getCards().get(1).getBlackJackCardValue());
 
-            playerHand.setSplitAvailable();
+                playerHand.setSplitAvailable();
+            }
         }
-
     }
+
+    public int getSplitHandValue() {
+        int totalValue = 0;
+        for (Card c : splitHandCards) {
+
+            if (totalValue < 11 && c.getBlackJackCardValue() == 1) {
+                totalValue += 11;
+            } else {
+                totalValue += c.getBlackJackCardValue();
+            }
+        }
+        return totalValue;
+    }
+
 
     public int getHandValue() {
         int totalValue = 0;
@@ -94,7 +114,6 @@ public abstract class Hand extends HandUI {
                 totalValue += c.getBlackJackCardValue();
             }
         }
-        updateContent();
         return totalValue;
     }
 
@@ -110,34 +129,62 @@ public abstract class Hand extends HandUI {
         }
     }
 
+
     public void onDataChanged() {
         if (handValueText != null) {
-
             setResult();
-            Log.d(TAG, "STATUS: " + getStatus());
-            Log.d(TAG, "handValue: " + getHandValue());
+            updateContent();
+
+//            Log.d(TAG, "STATUS: " + getStatus());
+//            Log.d(TAG, "handValue: " + getHandValue());
             handValueText.setText(String.valueOf(getHandValue()));
         }
-
     }
+
+    public void onDataChangedSplitHand() {
+        if (handValueText != null) {
+            setResult();
+            updateContentSplitHand();
+
+//            Log.d(TAG, "STATUS: " + getStatus());
+            Log.d(TAG, "handValue: " + getSplitHandValue());
+            handValueText.setText(String.valueOf(getSplitHandValue()));
+        }
+    }
+
+    private OnHandPlayedListener onHandPlayedListener;
 
     public void setOnHandPlayerListener(OnHandPlayedListener listener) {
         this.onHandPlayedListener = listener;
     }
 
     public interface OnHandPlayedListener {
-
         void onHandPlayed(Hand hand);
+    }
 
+    protected void onHandFinished() {
+        if (onHandPlayedListener != null) {
+            onHandPlayedListener.onHandPlayed(this);
+        }
     }
 
     public void updateContent() {
         adapter.clearList();
-
         for (int i = 0; i < cards.size(); i++) {
             adapter.add(cards.get(i));
         }
+        adapter.notifyDataSetChanged();
+    }
 
+    public void updateContentSplitHand() {
+        adapter.clearList();
+        for (int i = 0; i < splitHandCards.size(); i++) {
+            adapter.add(splitHandCards.get(i));
+            Log.d(TAG, "onSplitClicked: cards: " +
+                    splitHandCards.get(i).getBlackJackCardValue() + ", Suite: " +
+                    splitHandCards.get(i).getSuite() + " real value: " +
+                    splitHandCards.get(i).getNumberValue());
+        }
         adapter.notifyDataSetChanged();
     }
 }

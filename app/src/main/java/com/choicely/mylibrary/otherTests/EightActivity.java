@@ -51,7 +51,7 @@ public class EightActivity extends AppCompatActivity {
 
     private void playProgressBarBackWards() {
         CountDownTimer timerBackwards = new CountDownTimer(10000, 100) {
-            int progress = 0;
+            final int progress = 0;
 
             @Override
             public void onTick(long millisUntilFinished) {

@@ -33,16 +33,16 @@ public class NotificationTestActivity extends AppCompatActivity {
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
 
         button.setOnClickListener(v -> {
-notificationManager.notify(1, builder.build());
-
+            notificationManager.notify(1, builder.build());
 
 
         });
     }
-    private void createNotificationChannel(){
 
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-            CharSequence name ="Kanava";
+    private void createNotificationChannel() {
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = "Kanava";
             String description = "this is a desc";
             int importance = NotificationManager.IMPORTANCE_DEFAULT;
             NotificationChannel channel = new NotificationChannel("id", name, importance);

@@ -3,13 +3,14 @@ package com.choicely.mylibrary.blackJack.hand;
 import android.util.Log;
 import android.view.View;
 
+import com.choicely.mylibrary.R;
 import com.choicely.mylibrary.blackJack.BetAndBalance;
 import com.choicely.mylibrary.blackJack.BlackJackActivity;
+import com.choicely.mylibrary.blackJack.Card;
 import com.choicely.mylibrary.blackJack.PopUpAlert;
 import com.choicely.mylibrary.blackJack.cardDataInterfaces.Shoe;
 
 public class PlayerHand extends Hand {
-
 
     private final static String TAG = "PlayerHand";
     private BetAndBalance betAndBalance = new BetAndBalance();
@@ -19,6 +20,12 @@ public class PlayerHand extends Hand {
 
     public PlayerHand(Shoe shoe) {
         super(shoe);
+    }
+
+    private Card cardFromSplitPressed;
+
+    public PlayerHand(Card splitCard, Shoe shoe) {
+        super(splitCard, shoe);
     }
 
     @Override
@@ -65,21 +72,22 @@ public class PlayerHand extends Hand {
         if (active) {
             setButtonListeners();
             getCardValues(this);
+            Log.d(TAG, "setActive: active");
         }
     }
 
     private void setButtonListeners() {
+
         if (hitButton == null || doubleButton == null || splitButton == null ||
                 insuranceButton == null || standButton == null) {
             return;
         }
-
-        splitButton.setEnabled(false);
+//        splitButton.setEnabled(false);
         doubleButton.setEnabled(false);
         insuranceButton.setEnabled(false);
 
         checkDoubleAvailability();
-        checkInsuranceAvailability();
+//        checkInsuranceAvailability();
 
         hitButton.setOnClickListener(this::onHitClicked);
         doubleButton.setOnClickListener(this::onDoubleClicked);
@@ -89,7 +97,7 @@ public class PlayerHand extends Hand {
     }
 
 
-    private PopUpAlert popUpAlert = new PopUpAlert();
+    private final PopUpAlert popUpAlert = new PopUpAlert();
 
     private void onHitClicked(View view) {
 
@@ -99,14 +107,36 @@ public class PlayerHand extends Hand {
         checkGameStatus();
     }
 
-
     private void onStandClicked(View view) {
+//        if(has sub hands) {
+//
+//        }
+        if (playerSplitHand instanceof PlayerHand) {
+    
+        }
         onHandFinished();
     }
 
+    private PlayerHand playerSplitHand;
+
     private void onSplitClicked(View view) {
-        Log.d(TAG, "onSplitClicked: ");
         splitLayout.setVisibility(View.VISIBLE);
+
+        cardFromSplitPressed = getCards().get(0);
+        getCards().remove(0);
+        Log.d(TAG, "onSplitClicked: card from split pressed: " + cardFromSplitPressed.getSuite() + ", " + cardFromSplitPressed.getNumberValue());
+
+        playerSplitHand = new PlayerHand(cardFromSplitPressed, shoe);
+        playerSplitHand.findButtonsFromView(buttonLayout);
+        playerSplitHand.findHandSpecificViewsFromView(splitLayout.findViewById(R.id.player_player_hand_2_values));
+        playerSplitHand.addSplitCard(cardFromSplitPressed);
+
+
+        Log.d(TAG, "onSplitClicked: " + getSplitHandValue());
+        PlayerHand.this.setActive(false);
+        playerSplitHand.setActive(true);
+        playerSplitHand.onDataChangedSplitHand();
+
     }
 
     private void onDoubleClicked(View view) {
@@ -114,7 +144,7 @@ public class PlayerHand extends Hand {
 
         blackJackActivity.doubleBet(betAndBalance.getYourBet() * 2);
         addCard();
-        if (checkGameStatus() == false) {
+        if (!checkGameStatus()) {
             onHandFinished();
         }
     }
@@ -123,18 +153,20 @@ public class PlayerHand extends Hand {
         Log.d(TAG, "onInsuranceClicked: ");
         blackJackActivity.insurance();
         dealerHand.isInsuranceActive = true;
-        insuranceButton.setEnabled(false);
-
+        if (insuranceButton != null) {
+            insuranceButton.setEnabled(false);
+        }
     }
 
     public void setSplitAvailable() {
-        splitButton.setEnabled(true);
+        if (splitButton != null) {
+            splitButton.setEnabled(true);
+        }
     }
 
     public void setSplitLayoutInvisible() {
         splitLayout.setVisibility(View.GONE);
     }
-
 
     private boolean checkGameStatus() {
         switch (getStatus()) {
@@ -154,15 +186,17 @@ public class PlayerHand extends Hand {
 
     private void checkDoubleAvailability() {
         if (getHandValue() <= 11 && getHandValue() >= 9) {
-            doubleButton.setEnabled(true);
+            if (doubleButton != null) {
+                doubleButton.setEnabled(true);
+            }
         }
     }
-
-    private void checkInsuranceAvailability() {
-        if (dealerHand.getHandValue() == 11) {
-            insuranceButton.setEnabled(true);
-        }
-    }
+//
+//    private void checkInsuranceAvailability() {
+//        if (dealerHand.getHandValue() == 11) {
+//            insuranceButton.setEnabled(true);
+//        }
+//    }
 
     public void setBetAndBalance(BetAndBalance betAndBalance) {
         this.betAndBalance = betAndBalance;

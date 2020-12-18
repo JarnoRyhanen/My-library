@@ -16,7 +16,6 @@ public class BetAndBalance {
         onBalanceUpdatedListener.onBalanceUpdated(getVictorySum());
     }
 
-
     public int getYourBet() {
         return yourBet;
     }

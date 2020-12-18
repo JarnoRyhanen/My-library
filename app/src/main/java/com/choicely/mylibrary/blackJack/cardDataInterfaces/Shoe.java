@@ -8,8 +8,8 @@ import java.util.Stack;
 
 public class Shoe {
 
-    private int decks;
-    private Stack<Card> deckStack = new Stack<>();
+    private final int decks;
+    private final Stack<Card> deckStack = new Stack<>();
 
     public Shoe(int decks) {
         this.decks = decks;

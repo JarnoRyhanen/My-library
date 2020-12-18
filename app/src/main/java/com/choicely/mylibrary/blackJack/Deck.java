@@ -7,7 +7,7 @@ import java.util.Stack;
 
 public class Deck {
 
-    private Stack<Card> deck = new Stack<>();
+    private final Stack<Card> deck = new Stack<>();
 
 
     public Deck() {

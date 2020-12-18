@@ -37,6 +37,9 @@ public class BlackJackActivity extends AppCompatActivity {
     private View alertView;
     private View rulesView;
 
+    private View mainHand;
+    private View splitHand;
+
     private final PopUpAlert.BetAddedListener listener = bet -> addBet(bet);
     private final BetAndBalance.BalanceUpdatedListener balanceUpdatedListener = betWon -> updateBalance(betWon);
 
@@ -47,6 +50,9 @@ public class BlackJackActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.black_jack_activity);
 
+        mainHand = findViewById(R.id.player_player_hand_1_values);
+        splitHand = findViewById(R.id.player_player_hand_2_values);
+
         betTextView = findViewById(R.id.black_jack_activity_bet);
         balanceTextView = findViewById(R.id.black_jack_activity_balance);
         insuranceTextView = findViewById(R.id.black_jack_activity_insurance);
@@ -56,26 +62,24 @@ public class BlackJackActivity extends AppCompatActivity {
 
         alertView = getLayoutInflater().inflate(R.layout.custom_alert, null);
         rulesView = getLayoutInflater().inflate(R.layout.black_jack_rules_layout, null);
+
     }
 
     public void addBet(int bet) {
         betTextView.setText(String.format("%d €", bet));
         updateBalance(-bet);
         betAndBalance.setYourBet(bet);
-        Log.d(TAG, "addBet: getbet: " + betAndBalance.getYourBet());
     }
 
     public void updateBalance(int bet) {
-
         betAndBalance.setOnBalanceUpdatedListener(balanceUpdatedListener);
-
         balance = betAndBalance.getBalance() + bet;
         betAndBalance.setBalance(balance);
         balanceTextView.setText(String.format("%d €", balance));
     }
 
     public void doubleBet(int bet) {
-        betTextView.setText(String.valueOf(bet));
+        betTextView.setText(String.format("%d €", bet));
         betAndBalance.setYourBet(bet);
 
         balance = betAndBalance.getBalance() - bet / 2;
@@ -84,28 +88,25 @@ public class BlackJackActivity extends AppCompatActivity {
     }
 
     public void insurance() {
+        insuranceTextView.setVisibility(View.VISIBLE);
         betAndBalance.setInsurance(betAndBalance.getYourBet() / 2);
-
         int insurance = betAndBalance.getInsurance();
 
         insuranceTextView.setText(String.format("Insurance: %d €", insurance));
         updateBalance(-insurance);
-
     }
 
     public void onStartGameClicked(View view) {
         PopUpAlert popUpAlert = new PopUpAlert();
-
         popUpAlert.setBlackJackActivity(BlackJackActivity.this);
         popUpAlert.popUpBetting(alertView);
         popUpAlert.setBedAddedListener(listener);
-
     }
 
-    public void beginGame() {
+    protected void beginGame() {
+
         currentAndCompletedPlayerHands.clear();
         handStack.clear();
-        Log.d(TAG, "onNewGameClick");
 
         DealerHand dealerHand = new DealerHand(shoe);
         dealerHand.findHandSpecificViewsFromView(findViewById(R.id.bj_dealers_hand_layout));
@@ -116,6 +117,7 @@ public class BlackJackActivity extends AppCompatActivity {
         handStack.add(dealerHand);
 
         PlayerHand playerMainHand = new PlayerHand(shoe);
+
         playerMainHand.findButtonsFromView(findViewById(R.id.player));
         playerMainHand.findHandSpecificViewsFromView(findViewById(R.id.player_player_hand_1_values));
         playerMainHand.setSplitLayout(findViewById(R.id.player_player_hand_2_values));
@@ -128,6 +130,7 @@ public class BlackJackActivity extends AppCompatActivity {
         playerMainHand.setDealerHand(dealerHand);
         handStack.add(playerMainHand);
 
+        insuranceTextView.setVisibility(View.INVISIBLE);
         activateNextHand();
     }
 
@@ -149,7 +152,6 @@ public class BlackJackActivity extends AppCompatActivity {
     }
 
     private void activateNextHand() {
-
         Hand nextHand = handStack.pop();
         if (nextHand instanceof PlayerHand) {
             currentAndCompletedPlayerHands.add((PlayerHand) nextHand);
@@ -160,21 +162,9 @@ public class BlackJackActivity extends AppCompatActivity {
     private void updateContent() {
     }
 
-
-    public void onHandValueClick(View view) {
-
-    }
-
-
-
-
     public void onRulesClicked(View view) {
-
         PopUpAlert popUpAlert = new PopUpAlert();
-
         popUpAlert.setBlackJackActivity(BlackJackActivity.this);
         popUpAlert.rulesPopUp(rulesView);
-
-
     }
 }

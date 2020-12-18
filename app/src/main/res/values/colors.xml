@@ -18,6 +18,7 @@
     <color name="fire">#F63F12</color>
     <color name="hulk">#15DD68</color>
 
-
+    <color name="light_gray">#4DC1A1A1</color>
+    <color name="none">#00000000</color>
 
 </resources>

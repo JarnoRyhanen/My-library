@@ -17,7 +17,7 @@ public class CardFragment extends Fragment {
     private static final String ARG_COUNT = "param1";
     private Integer counter;
 
-    private int[] COLOR_MAP = {
+    private final int[] COLOR_MAP = {
             R.color.red, R.color.blue, R.color.green, R.color.yellow, R.color.orange
     };
 

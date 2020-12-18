@@ -17,15 +17,15 @@ import java.util.List;
 
 public class SulkeisetActivity extends AppCompatActivity {
 
-    private LiikenneValot liikennevalo = new LiikenneValot();
+    private final LiikenneValot liikennevalo = new LiikenneValot();
 
     private final static String TAG = "sulkeiset";
 
     private LinearLayout linearLayout;
     private Button loopButton;
 
-    private List<Integer> colors = new ArrayList<>();
-    private List<View> views = new ArrayList<>();
+    private final List<Integer> colors = new ArrayList<>();
+    private final List<View> views = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

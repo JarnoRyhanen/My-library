@@ -25,7 +25,7 @@ public class StringGeneratorActivity extends AppCompatActivity {
     private TextView progressBarText;
     private ProgressBar progressBar;
 
-    private ArrayList<String> stringList = new ArrayList<>();
+    private final ArrayList<String> stringList = new ArrayList<>();
 
 
     @Override

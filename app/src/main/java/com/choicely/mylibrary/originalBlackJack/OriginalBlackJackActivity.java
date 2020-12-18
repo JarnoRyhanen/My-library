@@ -21,8 +21,8 @@ public class OriginalBlackJackActivity extends AppCompatActivity {
 
     private static final String TAG = "BlackJackActivity";
 
-    private Random random = new Random();
-    private List<String> list = new ArrayList<>();
+    private final Random random = new Random();
+    private final List<String> list = new ArrayList<>();
 
     private TextView dealerCardValue;
     private TextView playerCardValue;
@@ -30,7 +30,7 @@ public class OriginalBlackJackActivity extends AppCompatActivity {
     private TextView dealerCard1, dealerCard2, dealerCard3, dealerCard4, dealerCard5;
     private TextView playerCard1, playerCard2, playerCard3, playerCard4, playerCard5;
 
-    private List<TextView> dealersCards = new ArrayList<>();
+    private final List<TextView> dealersCards = new ArrayList<>();
 
     private Button placeBet;
     private Button hit;

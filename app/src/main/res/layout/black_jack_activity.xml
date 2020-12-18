@@ -66,7 +66,6 @@
                 layout="@layout/player_hand_values"
                 android:layout_width="160dp"
                 android:layout_height="160dp"
-
                 />
 
             <include
@@ -75,6 +74,7 @@
                 android:layout_width="160dp"
                 android:layout_height="160dp"
                 tools:visibility="visible"
+                android:visibility="visible"
                 />
 
         </LinearLayout>
@@ -177,6 +177,7 @@
         tools:visibility="visible"
         tools:text="3444 €"
         />
+
     <TextView
         android:id="@+id/black_jack_activity_balance"
         android:layout_width="wrap_content"

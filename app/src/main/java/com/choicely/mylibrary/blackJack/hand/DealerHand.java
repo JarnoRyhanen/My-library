@@ -33,7 +33,7 @@ public class DealerHand extends Hand {
 
     }
 
-    private PopUpAlert popUpAlert = new PopUpAlert();
+    private final PopUpAlert popUpAlert = new PopUpAlert();
 
     @Override
     protected void onHandFinished() {

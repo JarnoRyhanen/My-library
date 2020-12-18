@@ -5,6 +5,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
+    android:background="@drawable/blackjack_view_highlight"
     >
 
     <TextView
@@ -13,18 +14,17 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:gravity="center"
-        android:padding="12dp"
+        android:padding="16dp"
         android:textColor="@color/black"
         android:textSize="60sp"
         tools:text="20"
-        android:onClick="onHandValueClick"
         />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_marginTop="20dp"
         android:id="@+id/hand_card_recycler_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
         />
 
 </LinearLayout>

@@ -9,8 +9,8 @@ import com.choicely.mylibrary.blackJack.cardDataInterfaces.CardSuite;
 public class Card implements CardNumber, CardSuite, BlackJackCardValue, Comparable<Card> {
 
     @IntRange(from = 1, to = 14)
-    private int cardValue;
-    private Suite suite;
+    private final int cardValue;
+    private final Suite suite;
 
     public Card(int cardValue, Suite suite) {
         this.cardValue = cardValue;

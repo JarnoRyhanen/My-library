@@ -23,7 +23,7 @@ public class CardFragmentTest extends Fragment {
 
 
     // Creates an array and puts a number of images in it. This array will be used later.
-    private int IMAGE_MAP[] = {
+    private final int[] IMAGE_MAP = {
             R.drawable.button, R.drawable.donut, R.drawable.lataa, R.drawable.puuhapete, R.drawable.ic_launcher_background
     };
 

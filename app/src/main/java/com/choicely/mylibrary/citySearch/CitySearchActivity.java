@@ -34,11 +34,11 @@ import okhttp3.Response;
 public class CitySearchActivity extends AppCompatActivity {
 
     private static final String TAG = "CitySearchActivity";
-    private OkHttpClient client = new OkHttpClient();
+    private final OkHttpClient client = new OkHttpClient();
 
     private AutoCompleteTextView autoCompleteTextView;
     private ProgressBar progressBar;
-    private List<String> cities = new ArrayList<>();
+    private final List<String> cities = new ArrayList<>();
 
 
     @Override

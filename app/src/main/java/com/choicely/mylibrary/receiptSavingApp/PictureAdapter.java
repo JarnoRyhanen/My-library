@@ -74,7 +74,7 @@ public class PictureAdapter extends RecyclerView.Adapter<PictureAdapter.PictureV
             imageView = view.findViewById(R.id.picture_list_row_image_view);
         }
 
-        private View.OnClickListener onRowClick = view -> {
+        private final View.OnClickListener onRowClick = view -> {
 
             Context ctx = itemView.getContext();
             Intent intent = new Intent(ctx, PictureTakenActivity.class);

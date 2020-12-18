@@ -52,7 +52,6 @@ public class CardValueAdapter extends RecyclerView.Adapter<CardValueAdapter.Card
         cardValues.clear();
     }
 
-
     static class CardValueViewHolder extends RecyclerView.ViewHolder {
 
         TextView card;

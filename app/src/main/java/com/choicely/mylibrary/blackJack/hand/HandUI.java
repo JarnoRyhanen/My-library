@@ -33,8 +33,10 @@ public class HandUI {
     protected CardValueAdapter adapter;
 
     private final static String TAG = "HandUI";
+    protected View buttonLayout;
 
     public void findButtonsFromView(View v) {
+        buttonLayout = v;
 
         startGameBtn = v.findViewById(R.id.black_jack_start_game);
         hitButton = v.findViewById(R.id.bj_hit_button);
@@ -46,7 +48,6 @@ public class HandUI {
 
     public void findHandSpecificViewsFromView(View v) {
         handValueText = v.findViewById(R.id.hand_size_text_view);
-
         cardRecycler = v.findViewById(R.id.hand_card_recycler_view);
         cardRecycler.setLayoutManager(new LinearLayoutManager(v.getContext()));
         adapter = new CardValueAdapter(v.getContext());
@@ -56,12 +57,6 @@ public class HandUI {
 
     public void setSplitLayout(View v) {
         splitLayout = v;
-
-
-
     }
-
-
-
 
 }

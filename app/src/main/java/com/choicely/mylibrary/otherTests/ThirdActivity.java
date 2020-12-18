@@ -45,7 +45,7 @@ public class ThirdActivity extends AppCompatActivity {
             public void onAccuracyChanged(Sensor sensor, int i) {
             }
         };
-        sensorManager.registerListener(gyroscopeSensorListener, gyroScopeSensor, sensorManager.SENSOR_DELAY_NORMAL);
+        sensorManager.registerListener(gyroscopeSensorListener, gyroScopeSensor, SensorManager.SENSOR_DELAY_NORMAL);
 
     }
 }

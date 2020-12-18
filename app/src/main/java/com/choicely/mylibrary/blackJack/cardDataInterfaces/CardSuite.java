@@ -6,7 +6,7 @@ public interface CardSuite {
         SPADES,
         HEARTS,
         CLUBS,
-        DIAMONDS;
+        DIAMONDS
 
     }
 
