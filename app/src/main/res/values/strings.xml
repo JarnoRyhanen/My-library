@@ -5,12 +5,12 @@
     <string name="green">GREEN</string>
     <string name="rules_text">Rules</string>
 
-    <string name="rules_body" formatted="true"> Welcome to Black Jack.Here are the rules for the game if you are unfamiliar with it. \n\nThe goal for the game is to get the score of 21. If you go over 21 at any point, you will lose the game.
+    <string name="rules_body" formatted="true"> Welcome to Black Jack. Here are the rules for the game if you are unfamiliar with it. \n\nThe goal for the game is to get the score of 21. If you go over 21 at any point, you will lose the game.
         The same applies to the dealer as well.\n\n Before you start the game, you must place a bet. This bet is between 25 € and 1000 €. After you have placed the bet, you will receive two cards while the dealer gets only one card.\n\nAfter getting the cards, you may press the <b>Hit button</b>. Doing so will draw you a card. \n\nIf you are happy with your current score, you may press the <b>Stand button</b>. This will end your turn and the dealer will start drawing cards until it reached the score of 17. If neither you nor the dealer get
         21, the winner will be the one with the higher score.\n\n If your total hand value after drawing the first two cards is 9, 10 or 11, you may press the <b>Double button</b>, which will double your bet, draw you one more card and <b>end</b> your turn.\n\n At the beginning of the game, if the
-    dealer got an ace as the first card, you press the <b>Insurance button</b>. This will place a separate bet half the size of your original bet. If the dealers second card is worth 10, this will
+    dealer got an ace as the first card, you may press the <b>Insurance button</b>. This will place a separate bet half the size of your original bet. If the dealers second card is worth 10, this will
     normally result in a Black Jack, with dealer winning. However, if you insured, the game ends with you losing and winning nothing. If the dealer did not get a Black Jack, you will lose the
-    insurance bet and the game will continue normally.\n\n If your starting hand has two cards with the same value, you may split your hand into two different hands by pressing the <b>Split button</b>, doubling your original bet and splitting it equally between these hands.
+    insurance bet and the game will continue normally.\n\n If your starting hand has two cards with the same value, you may split your hand into two different hands by pressing the <b>Split button</b>, doubling your original bet and splitting it equally between these hands. Please note that you <b>cannot</b> insure the split hands.
     </string>
 
     <string-array name="image_types">

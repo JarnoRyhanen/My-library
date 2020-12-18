@@ -4,27 +4,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
     android:background="@drawable/blackjack_view_highlight"
+    android:orientation="vertical"
     >
 
     <TextView
-        android:id="@+id/hand_size_text_view"
+        android:id="@+id/split_hand_bet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:gravity="center"
-        android:padding="16dp"
+        android:layout_marginStart="30dp"
+        android:text="1000 €"
         android:textColor="@color/black"
-        android:textSize="60sp"
-        tools:text="20"
+        android:textSize="25sp"
+        android:visibility="gone"
         />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/hand_card_recycler_view"
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_marginTop="20dp"
-        />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:id="@+id/hand_size_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:padding="16dp"
+            android:textColor="@color/black"
+            android:textSize="60sp"
+            tools:text="20"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/hand_card_recycler_view"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            />
+
+    </LinearLayout>
+
 
 </LinearLayout>

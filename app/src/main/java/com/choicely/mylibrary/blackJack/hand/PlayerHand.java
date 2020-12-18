@@ -17,12 +17,9 @@ public class PlayerHand extends Hand {
     private BlackJackActivity blackJackActivity = new BlackJackActivity();
     private DealerHand dealerHand;
 
-
     public PlayerHand(Shoe shoe) {
         super(shoe);
     }
-
-    private Card cardFromSplitPressed;
 
     public PlayerHand(Card splitCard, Shoe shoe) {
         super(splitCard, shoe);
@@ -77,17 +74,17 @@ public class PlayerHand extends Hand {
     }
 
     private void setButtonListeners() {
+//        checkInsuranceAvailability();
 
         if (hitButton == null || doubleButton == null || splitButton == null ||
                 insuranceButton == null || standButton == null) {
             return;
         }
-//        splitButton.setEnabled(false);
+        splitButton.setEnabled(false);
         doubleButton.setEnabled(false);
         insuranceButton.setEnabled(false);
 
         checkDoubleAvailability();
-//        checkInsuranceAvailability();
 
         hitButton.setOnClickListener(this::onHitClicked);
         doubleButton.setOnClickListener(this::onDoubleClicked);
@@ -108,35 +105,58 @@ public class PlayerHand extends Hand {
     }
 
     private void onStandClicked(View view) {
-//        if(has sub hands) {
-//
-//        }
-        if (playerSplitHand instanceof PlayerHand) {
-    
-        }
+        onSplitPressedListener.onSplitPressed();
         onHandFinished();
     }
 
+    private SplitPressedListener onSplitPressedListener = new SplitPressedListener() {
+        @Override
+        public void onSplitPressed() {
+            if (playerSplitHand instanceof PlayerHand) {
+                Log.d(TAG, "onSplitPressed: Split was pressed");
+                playerSplitHand.setActive(false);
+                PlayerHand.this.setActive(true);
+                splitLayout.setActivated(false);
+
+            } else {
+                Log.d(TAG, "onSplitPressed: split was not pressed");
+            }
+        }
+    };
     private PlayerHand playerSplitHand;
 
     private void onSplitClicked(View view) {
         splitLayout.setVisibility(View.VISIBLE);
 
-        cardFromSplitPressed = getCards().get(0);
+        Card cardFromSplitPressed = getCards().get(0);
         getCards().remove(0);
         Log.d(TAG, "onSplitClicked: card from split pressed: " + cardFromSplitPressed.getSuite() + ", " + cardFromSplitPressed.getNumberValue());
 
         playerSplitHand = new PlayerHand(cardFromSplitPressed, shoe);
         playerSplitHand.findButtonsFromView(buttonLayout);
         playerSplitHand.findHandSpecificViewsFromView(splitLayout.findViewById(R.id.player_player_hand_2_values));
-        playerSplitHand.addSplitCard(cardFromSplitPressed);
+        playerSplitHand.cards.add(cardFromSplitPressed);
+        playerSplitHand.setSplitPressedListener(onSplitPressedListener);
 
+        playerSplitHand.splitHandBet.setVisibility(View.VISIBLE);
+        PlayerHand.this.splitHandBet.setVisibility(View.VISIBLE);
+        PlayerHand.this.splitHandBet.setText("sdfg");
+        playerSplitHand.splitHandBet.setText(String.format("wredsf"));
 
-        Log.d(TAG, "onSplitClicked: " + getSplitHandValue());
-        PlayerHand.this.setActive(false);
+        Log.d(TAG, "onSplitClicked: " + getHandValue());
         playerSplitHand.setActive(true);
-        playerSplitHand.onDataChangedSplitHand();
+        PlayerHand.this.setActive(false);
+        splitLayout.setActivated(true);
+        playerSplitHand.onDataChanged();
+    }
 
+
+    public void setSplitPressedListener(SplitPressedListener listener) {
+        this.onSplitPressedListener = listener;
+    }
+
+    public interface SplitPressedListener {
+        void onSplitPressed();
     }
 
     private void onDoubleClicked(View view) {
@@ -186,17 +206,15 @@ public class PlayerHand extends Hand {
 
     private void checkDoubleAvailability() {
         if (getHandValue() <= 11 && getHandValue() >= 9) {
-            if (doubleButton != null) {
-                doubleButton.setEnabled(true);
-            }
+            doubleButton.setEnabled(true);
         }
     }
-//
-//    private void checkInsuranceAvailability() {
-//        if (dealerHand.getHandValue() == 11) {
-//            insuranceButton.setEnabled(true);
-//        }
-//    }
+
+    private void checkInsuranceAvailability() {
+        if (dealerHand.getHandValue() == 11 && insuranceButton != null && dealerHand != null) {
+            insuranceButton.setEnabled(true);
+        }
+    }
 
     public void setBetAndBalance(BetAndBalance betAndBalance) {
         this.betAndBalance = betAndBalance;
@@ -208,22 +226,6 @@ public class PlayerHand extends Hand {
 
     public void setDealerHand(DealerHand dealerHand) {
         this.dealerHand = dealerHand;
-    }
-
-    private void enableAllButtons() {
-        doubleButton.setEnabled(true);
-        hitButton.setEnabled(true);
-        insuranceButton.setEnabled(true);
-        splitButton.setEnabled(true);
-        standButton.setEnabled(true);
-    }
-
-    private void disableAllButtons() {
-        standButton.setEnabled(false);
-        doubleButton.setEnabled(false);
-        hitButton.setEnabled(false);
-        insuranceButton.setEnabled(false);
-        splitButton.setEnabled(false);
     }
 
 }

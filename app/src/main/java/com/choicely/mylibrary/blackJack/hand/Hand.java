@@ -59,12 +59,10 @@ public abstract class Hand extends HandUI {
         onDataChanged();
     }
 
-    public void addSplitCard(Card card) {
-        splitHandCards.add(card);
-        onDataChangedSplitHand();
-    }
-
-
+//    public void addSplitCard(Card card) {
+//        splitHandCards.add(card);
+//        onDataChangedSplitHand();
+//    }
     @Nullable
     public HandStatus getStatus() {
         return status;
@@ -90,18 +88,18 @@ public abstract class Hand extends HandUI {
         }
     }
 
-    public int getSplitHandValue() {
-        int totalValue = 0;
-        for (Card c : splitHandCards) {
-
-            if (totalValue < 11 && c.getBlackJackCardValue() == 1) {
-                totalValue += 11;
-            } else {
-                totalValue += c.getBlackJackCardValue();
-            }
-        }
-        return totalValue;
-    }
+//    public int getSplitHandValue() {
+//        int totalValue = 0;
+//        for (Card c : splitHandCards) {
+//
+//            if (totalValue < 11 && c.getBlackJackCardValue() == 1) {
+//                totalValue += 11;
+//            } else {
+//                totalValue += c.getBlackJackCardValue();
+//            }
+//        }
+//        return totalValue;
+//    }
 
 
     public int getHandValue() {
@@ -141,16 +139,16 @@ public abstract class Hand extends HandUI {
         }
     }
 
-    public void onDataChangedSplitHand() {
-        if (handValueText != null) {
-            setResult();
-            updateContentSplitHand();
-
-//            Log.d(TAG, "STATUS: " + getStatus());
-            Log.d(TAG, "handValue: " + getSplitHandValue());
-            handValueText.setText(String.valueOf(getSplitHandValue()));
-        }
-    }
+//    public void onDataChangedSplitHand() {
+//        if (handValueText != null) {
+//            setResult();
+//            updateContentSplitHand();
+//
+////            Log.d(TAG, "STATUS: " + getStatus());
+//            Log.d(TAG, "handValue: " + getSplitHandValue());
+//            handValueText.setText(String.valueOf(getSplitHandValue()));
+//        }
+//    }
 
     private OnHandPlayedListener onHandPlayedListener;
 
@@ -176,15 +174,15 @@ public abstract class Hand extends HandUI {
         adapter.notifyDataSetChanged();
     }
 
-    public void updateContentSplitHand() {
-        adapter.clearList();
-        for (int i = 0; i < splitHandCards.size(); i++) {
-            adapter.add(splitHandCards.get(i));
-            Log.d(TAG, "onSplitClicked: cards: " +
-                    splitHandCards.get(i).getBlackJackCardValue() + ", Suite: " +
-                    splitHandCards.get(i).getSuite() + " real value: " +
-                    splitHandCards.get(i).getNumberValue());
-        }
-        adapter.notifyDataSetChanged();
-    }
+//    public void updateContentSplitHand() {
+//        adapter.clearList();
+//        for (int i = 0; i < splitHandCards.size(); i++) {
+//            adapter.add(splitHandCards.get(i));
+//            Log.d(TAG, "onSplitClicked: cards: " +
+//                    splitHandCards.get(i).getBlackJackCardValue() + ", Suite: " +
+//                    splitHandCards.get(i).getSuite() + " real value: " +
+//                    splitHandCards.get(i).getNumberValue());
+//        }
+//        adapter.notifyDataSetChanged();
+//    }
 }

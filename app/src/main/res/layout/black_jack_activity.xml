@@ -52,6 +52,7 @@
         android:orientation="vertical"
         >
 
+
         <LinearLayout
             android:id="@+id/player_hand_values"
             android:layout_width="wrap_content"
@@ -73,11 +74,12 @@
                 layout="@layout/player_hand_values"
                 android:layout_width="160dp"
                 android:layout_height="160dp"
-                tools:visibility="visible"
                 android:visibility="visible"
+                tools:visibility="visible"
                 />
 
         </LinearLayout>
+
 
         <Button
             android:id="@+id/bj_hit_button"
@@ -165,17 +167,18 @@
         android:textSize="30sp"
         tools:text="3444 €"
         />
+
     <TextView
         android:id="@+id/black_jack_activity_insurance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/black_jack_activity_bet"
-        android:layout_marginTop="8dp"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
         android:textColor="@color/black"
         android:textSize="20sp"
-        tools:visibility="visible"
         tools:text="3444 €"
+        tools:visibility="visible"
         />
 
     <TextView

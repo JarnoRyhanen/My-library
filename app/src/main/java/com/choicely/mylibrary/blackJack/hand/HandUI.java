@@ -28,6 +28,7 @@ public class HandUI {
     protected Button doubleButton;
 
     protected TextView handValueText;
+    protected TextView splitHandBet;
     protected RecyclerView cardRecycler;
     protected View splitLayout;
     protected CardValueAdapter adapter;
@@ -48,6 +49,7 @@ public class HandUI {
 
     public void findHandSpecificViewsFromView(View v) {
         handValueText = v.findViewById(R.id.hand_size_text_view);
+        splitHandBet = v.findViewById(R.id.split_hand_bet);
         cardRecycler = v.findViewById(R.id.hand_card_recycler_view);
         cardRecycler.setLayoutManager(new LinearLayoutManager(v.getContext()));
         adapter = new CardValueAdapter(v.getContext());

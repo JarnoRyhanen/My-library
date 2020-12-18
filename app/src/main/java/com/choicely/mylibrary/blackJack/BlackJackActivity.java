@@ -37,9 +37,6 @@ public class BlackJackActivity extends AppCompatActivity {
     private View alertView;
     private View rulesView;
 
-    private View mainHand;
-    private View splitHand;
-
     private final PopUpAlert.BetAddedListener listener = bet -> addBet(bet);
     private final BetAndBalance.BalanceUpdatedListener balanceUpdatedListener = betWon -> updateBalance(betWon);
 
@@ -49,9 +46,6 @@ public class BlackJackActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.black_jack_activity);
-
-        mainHand = findViewById(R.id.player_player_hand_1_values);
-        splitHand = findViewById(R.id.player_player_hand_2_values);
 
         betTextView = findViewById(R.id.black_jack_activity_bet);
         balanceTextView = findViewById(R.id.black_jack_activity_balance);

@@ -83,11 +83,13 @@ public class PopUpAlert {
         this.onBetAddedListener = listener;
     }
 
+    public interface BetAddedListener {
+        void onBetAdded(int bet);
+    }
+
     public void setBlackJackActivity(BlackJackActivity blackJackActivity) {
         this.blackJackActivity = blackJackActivity;
     }
 
-    public interface BetAddedListener {
-        void onBetAdded(int bet);
-    }
+
 }

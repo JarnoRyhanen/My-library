@@ -57,9 +57,12 @@
         <activity android:name=".receiptSavingApp.PictureTakenActivity" />
         <activity android:name=".imageGallery.ImageGalleryActivity" />
         <activity android:name=".imageGallery.EditImageActivity" />
-        <activity android:name=".blackJack.BlackJackActivity" />
+        <activity
+            android:name=".blackJack.BlackJackActivity"
+            android:screenOrientation="portrait"
+            />
         <activity android:name=".originalBlackJack.OriginalBlackJackActivity" />
-        <activity android:name=".sulkeiset.SulkeisetActivity" />
+        <activity android:name=".sulkeiset.SulkeisetActivity"/>
 
         <provider
             android:name="androidx.core.content.FileProvider"
